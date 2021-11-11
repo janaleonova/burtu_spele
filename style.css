@@ -1,3 +1,91 @@
 body{ 
-    background-color: rgb(83, 7, 67);
+    background-color:#595353;
 }
+
+.background-hexagon{
+    
+}
+.hexagon-1 {
+    width: 100px;
+    height: 57.735px;
+    background: #EEAACC;
+    position: relative;
+  }
+.hexagon-1::before {
+    content: "";
+    position: absolute;
+    top: -28.8675px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 28.8675px solid #EEAACC;
+  }
+.hexagon-1::after {
+    content: "";
+    position: absolute;
+    bottom: -28.8675px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 28.8675px solid #EEAACC;
+  }
+  .hexagon-2 {
+    width: 100px;
+    height: 57.735px;
+    background: #FFDA56;
+    position: relative;
+  }
+.hexagon-2::before {
+    content: "";
+    position: absolute;
+    top: -28.8675px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 28.8675px solid #FFDA56;
+  }
+.hexagon-2::after {
+    content: "";
+    position: absolute;
+    bottom: -28.8675px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 28.8675px solid #FFDA56;
+  }
+  .hexagon-3 {
+    width: 100px;
+    height: 57.735px;
+    background: #FFCBA4;
+    position: relative;
+  }
+.hexagon-3::before {
+    content: "";
+    position: absolute;
+    top: -28.8675px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 28.8675px solid #FFCBA4;
+  }
+.hexagon-3::after {
+    content: "";
+    position: absolute;
+    bottom: -28.8675px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 28.8675px solid #FFCBA4;
+  }
