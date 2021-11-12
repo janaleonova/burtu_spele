@@ -36,6 +36,16 @@
     clip-path: polygon(var(--hc) 0, calc(100% - var(--hc)) 0,100% var(--vc),100% calc(100% - var(--vc)), calc(100% - var(--hc)) 100%,var(--hc) 100%,0 calc(100% - var(--vc)),0 var(--vc));
     margin-bottom: calc(var(--mv) - var(--vc)); 
   }
+   .burts{
+    border:mediumblue 15px solid;
+    background-color: midnightblue;
+    position: absolute;
+    z-index: 100;
+    height: 50px;
+    width: 50px;
+ 
+   
+  }
   
   .container::before{
     content: "";
