@@ -1,40 +1,134 @@
-body{ 
+.main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,calc(var(--s) + 2*var(--mh)));
+    justify-content:center;
+    --s: 80px; /* size */
+    --r: 1.15; /* ratio */
+    /* clip-path */
+    --h: 0.5;  
+    --v: 0.25; 
+    --hc:calc(clamp(0,var(--h),0.5) * var(--s)) ;
+    --vc:calc(clamp(0,var(--v),0.5) * var(--s) * var(--r)); 
+    
+    /*margin */
+    --mv: 2px; /* vertical */
+    --mh: calc(var(--mv) + (var(--s) - 2*var(--hc))/2); /* horizontal */
+    /* for the float*/
+    --f: calc(2*var(--s)*var(--r) + 4*var(--mv)  - 2*var(--vc) - 2px);
+  }
+  
+  .container {
+    grid-column: 1/-1;
+    max-width:790px;
+    margin:0 auto;
+    font-size: 0; /*disable white space between inline block element */
+    position:relative;
+    padding-bottom:50px;
+    filter:drop-shadow(2px 2px 1px #333)
+  }
+  
+  .container .suna {
+    width: var(--s);
+    margin: var(--mv) var(--mh);
+    height: calc(var(--s)*var(--r)); 
+    display: inline-block;
+    font-size:initial;
+    clip-path: polygon(var(--hc) 0, calc(100% - var(--hc)) 0,100% var(--vc),100% calc(100% - var(--vc)), calc(100% - var(--hc)) 100%,var(--hc) 100%,0 calc(100% - var(--vc)),0 var(--vc));
+    margin-bottom: calc(var(--mv) - var(--vc)); 
+  }
+  
+  .container::before{
+    content: "";
+    width: calc(var(--s)/2 + var(--mh));
+    float: left;
+    height: 120%;
+    shape-outside: repeating-linear-gradient(     
+                     transparent 0 calc(var(--f) - 2px),      
+                     #fff        0 var(--f));
+  }
+  
+  
+  .container div::before {
+    padding-top:80px;
+    content:"izvēlies \A vārdu";
+    text-transform:uppercase;
+    white-space:pre;
+    font-size:75px;
+    font-family:sans-serif;
+    font-weight:bold;
+    text-align:center;
+    position:absolute;
+    color:#fff;
+    background:linear-gradient(45deg,#c6da6f,#25b09b);
+    inset:0;
+  }
+  
+  .container div {
+    animation:show 10s infinite;
+    opacity:0;
+  }
+ 
+  
+  @keyframes show{
+    60% {
+       opacity:1;
+    }
+  }
+  
+  body  {
+    background:#ccc;
+  }
+  View Compiled
+  
+  
+  Resources
+
+/*body{ 
     background-color:#595353;
 }
-
+.hexagon{
+    width: 900px;
+    height: 86.6025px;
+    border: solid, 1px, red;
+    background-color: red;
+    margin-top:29px
+    
+}
 .hexagon1{
-    width: 100px;
-    height: 57.735px;
+    width: 4rem;
+    height: 2.31012rem    ;
     background: #FFDA56;
     position: relative;
+    float: left;
     }
 .hexagon1::before {
     content: "";
     position: absolute;
-    top: -28.8675px;
+    top: -1.1547rem ;
     left: 0;
     width: 0;
     height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-bottom: 28.8675px solid #FFDA56;
+    border-left: 2rem solid transparent;
+    border-right: 2rem solid transparent;
+    border-bottom: 1.1547rem solid #FFDA56;
     }
 .hexagon1::after {
     content: "";
     position: absolute;
-    bottom: -28.8675px;
+    bottom: -1.1547rem;
     left: 0;
     width: 0;
     height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-top: 28.8675px solid #FFDA56;
+    border-left: 2rem solid transparent;
+    border-right: 2rem solid transparent;
+    border-top: 1.1547rem solid #FFDA56;
     }
 .hexagon2{
     width: 100px;
     height: 57.735px;
     background: #FFCBA4;
     position: relative;
+    float: left;
     }
 .hexagon2::before {
     content: "";
@@ -63,6 +157,7 @@ body{
     height: 57.735px;
     background: #EEAACC;
     position: relative;
+    float: left;
     }
 .hexagon3::before {
     content: "";
@@ -85,4 +180,4 @@ body{
     border-left: 50px solid transparent;
     border-right: 50px solid transparent;
     border-top: 28.8675px solid #EEAACC;
-    }
+    }*/
