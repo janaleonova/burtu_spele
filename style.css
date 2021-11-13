@@ -4,8 +4,10 @@ body{
 :root {
 
   }
-wrapper{
-    
+.wraper{
+  margin: auto;
+  width:1030px;
+      
 }
 header {
   background-color: #666;
@@ -18,24 +20,25 @@ header {
 /* Create two columns/boxes that floats next to each other */
 nav {
   float: left;
-  width: 25%;
-  height: 300px; /* only for demonstration, should be removed */
+  width: 300px;
+  height: 351.9px; 
   background: #ccc;
-  padding: 20px;
+  padding: 20px 0px;
 }
 .izvelne{
   color: #382800;
   font-variant: small-caps;
-  
+  height: 25%;
+
 }
 .img_bite_sm{
   height: 2.5rem;
 }
 article{
   float: left;
-
   min-width: 32rem;
-}
+  width:730px;
+ }
 /* Clear floats after the columns */
 section::after {
   content: "";
@@ -49,12 +52,13 @@ footer {
   padding: 10px;
   text-align: center;
   color: white;
-  width: 100%;
+  
 }
 
 
 /*šūnu izkārtojuma CSS aizgūts no https://css-tricks.com/hexagons-and-beyond-flexible-responsive-grid-patterns-sans-media-queries/*/
 .sunu_lauks{
+ margin:auto;
     display: grid;
     width: 32rem;
     grid-template-columns: repeat(auto-fit,calc(var(--s) + 2*var(--mh)));
@@ -76,12 +80,13 @@ footer {
   
   .container {
     grid-column: 1/-1;
-    
     margin:0 auto;
     font-size: 0; /*disable white space between inline block element */
     position:relative;
     padding-bottom:50px;
-    filter:drop-shadow(2px 2px 1px #333)
+    padding-top: 50px;
+    filter:drop-shadow(2px 2px 1px #333);
+    
   }
   
   .container .suna {
@@ -108,7 +113,7 @@ footer {
   
   
   .container .suna::before {
-    padding-top:4.5rem;
+    padding-top:6.5rem;
     content:"Burtu \A spēle";
     text-transform:uppercase;
     white-space:pre;
