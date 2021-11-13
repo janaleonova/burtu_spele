@@ -1,5 +1,49 @@
+:root {
+  font-size: 12px;
+  }
+wrapper{
+  width:90%;
+  
+}
+header {
+  background-color: #666;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 20%;
+  height: 300px; /* only for demonstration, should be removed */
+  background: #ccc;
+  padding: 20px;
+}
+article{
+  float: left;
+  min-width: 32rem;
+}
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+footer {
+  float:none;
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  width: 100%;
+}
+
+
 /*šūnu izkārtojuma CSS aizgūts no https://css-tricks.com/hexagons-and-beyond-flexible-responsive-grid-patterns-sans-media-queries/*/
-.main {
+.sunu_lauks{
     display: grid;
     width: 32rem;
     grid-template-columns: repeat(auto-fit,calc(var(--s) + 2*var(--mh)));
@@ -53,11 +97,11 @@
   
   
   .container .suna::before {
-    padding-top:80px;
+    padding-top:4.5rem;
     content:"Burtu \A spēle";
     text-transform:uppercase;
     white-space:pre;
-    font-size:75px;
+    font-size:5rem;
     font-family:sans-serif;
     font-weight:bold;
     text-align:center;
