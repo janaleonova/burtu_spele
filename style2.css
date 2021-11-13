@@ -1,9 +1,10 @@
 /*šūnu izkārtojuma CSS aizgūts no https://css-tricks.com/hexagons-and-beyond-flexible-responsive-grid-patterns-sans-media-queries/*/
 .main {
     display: grid;
-    grid-template-columns: repeat(auto-fit,calc(var(--s) + 2*var(--mh)));
+    grid-template-columns: repeat(auto-fit,calc
+    (var(--s) + 2*var(--mh)));
     justify-content:center;
-    --s: 80px; /* size */
+    --s: 3rem; /* size */
     --r: 1.15; /* ratio */
     /* clip-path */
     --h: 0.5;  
@@ -12,7 +13,7 @@
     --vc:calc(clamp(0,var(--v),0.5) * var(--s) * var(--r)); 
     
     /*margin */
-    --mv: 2px; /* vertical */
+    --mv: 3px; /* vertical */
     --mh: calc(var(--mv) + (var(--s) - 2*var(--hc))/2); /* horizontal */
     /* for the float*/
     --f: calc(2*var(--s)*var(--r) + 4*var(--mv)  - 2*var(--vc) - 2px);
@@ -33,30 +34,23 @@
     margin: var(--mv) var(--mh);
     height: calc(var(--s)*var(--r)); 
     display: inline-block;
-    font-size:initial;
+    font-size: 3px;;
     clip-path: polygon(var(--hc) 0, calc(100% - var(--hc)) 0,100% var(--vc),100% calc(100% - var(--vc)), calc(100% - var(--hc)) 100%,var(--hc) 100%,0 calc(100% - var(--vc)),0 var(--vc));
     margin-bottom: calc(var(--mv) - var(--vc)); 
   }
-   .burts{
-    border:mediumblue 15px solid;
-    color: red !important;
-    background-color: red !important;
-    position: absolute;
-    z-index:initial;
-    height: 50px;
-    width: 50px;
-   
+   .burta_lauks{
+      position: absolute;
+     
   }
-  .burts2{
-    border:mediumblue 15px solid;
-    color: red !important;
-    background-color: red !important;
-    position: relative;
-    z-index:initial;
- 
-   
-  }
+  .burts{
+    margin: auto;
+    border: 3px solid rgba(0, 128, 0, 0);
+    padding: 10px;
+    color: #000;
+    font-size: 20px;
   
+  }
+ 
   .container::before{
     content: "";
     width: calc(var(--s)/2 + var(--mh));
@@ -68,27 +62,14 @@
   }
   
   
-  .container div::before {
+  .container .suna::before {
     padding-top:80px;
-    content:"izvēlies \A vārdu";
-    text-transform:uppercase;
-    white-space:pre;
-    font-size:75px;
-    font-family:sans-serif;
-    font-weight:bold;
-    text-align:center;
+    content:"";
     position:absolute;
-    color:#fff;
     background:linear-gradient(45deg,#c6da6f,#25b09b);
     inset:0;
   }
-  
-  .container div {
-    animation:show 10s infinite;
-    opacity:0;
-  }
- 
-  
+   
   @keyframes show{
     60% {
        opacity:1;
