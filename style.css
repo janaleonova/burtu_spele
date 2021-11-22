@@ -156,6 +156,7 @@ footer {
             opacity: 1;
         }
         }
+        
 /*spēles lauka izvēlnes CSS */
 .speles_lauks {
   padding-top: 5rem;
@@ -227,11 +228,11 @@ footer {
 }
 
 .container2 .suna{
-  animation: show 5s;
+  animation: show1 5s;
   animation-iteration-count: 1;
  }
 .burta_lauks{
-    background-color: red;
+ 
     position: relative; 
     margin: auto; 
 }
@@ -246,6 +247,7 @@ footer {
   border: none;
   margin:auto;
   padding-left: 1.7rem;
+  font-variant: small-caps;
 
 }
 
@@ -265,7 +267,7 @@ footer {
 }
 
           
-@keyframes show{
+@keyframes show1{
   60% {
       opacity:1;
   }
