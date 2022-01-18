@@ -11,24 +11,7 @@
     <div class="wraper">
         <header>
             <nav>
-                <div class="izvelne"><a href="index.html">
-                    <div class="logo_lauks">
-                        <div class="container3">
-                            <div class="suna"></div>
-                            <div class="suna"></div>
-                            <div class="suna"></div>
-                            <div class="suna"></div>
-                            <div class="suna"></div>
-                            <div class="suna"></div>
-                            <div class="suna"></div>
-                            <div class="suna"></div>
-                            <div class="suna"></div>
-                            <div class="suna"></div>
-                            <div class="suna"></div>
-                            <div class="suna"></div>
-                            </a></div>
-                        </div>
-                    </div><!--beidzas bišu šunu lauks-->
+                <div class="izvelne"><a href="index.html"><img class="img_bite_sm" src="img/bite1.gif">sākums</a></div>
                 <div class="izvelne"><a href="spele.html"><img class="img_bite_sm" src="img/bite1.gif">sākt spēli</a></div>
                 <div class="izvelne"><a href="top.html"><img class="img_bite_sm" src="img/bite2.gif">rezultātu tops</a></div>
                 <div class="izvelne"><a href="help.html"><img class="img_bite_sm" src="img/bite3.gif">pamācība</a></div>
@@ -43,43 +26,45 @@
                 <div class="container2">
                     <div class="suna">
                         <div class="burta_lauks">
-                            <input class="burts" type="text" name="burts1" placeholder="...">
+                            <input class="burts" type="text" name="burts0" id="I0" placeholder="...">
                         </div>
                     </div>
                     <div class="suna">
                         <div class="burta_lauks">
-                            <input class="burts" type="text" name="burts1" placeholder="...">
+                            <input class="burts" type="text" name="burts1" id="I1" placeholder="...">
                         </div>
                     </div>
                     <div class="suna">
                         <div class="burta_lauks">
-                            <input class="burts" type="text" name="burts1" placeholder="...">
+                            <input class="burts" type="text" name="burts2" id="I2"  placeholder="...">
                         </div>
                     </div>                   <div class="suna">
                         <div class="burta_lauks">
-                            <input class="burts" type="text" name="burts1" placeholder="...">
+                            <input class="burts" type="text" name="burts3" id="I3"  placeholder="...">
                         </div>
                     </div>                   <div class="suna">
                         <div class="burta_lauks">
-                            <input class="burts" type="text" name="burts1" placeholder="...">
+                            <input class="burts" type="text" name="burts4" id="I4"  placeholder="...">
                         </div>
                     </div>
                     <div class="suna">
                         <div class="burta_lauks">
-                            <input class="burts" type="text" name="burts1" placeholder="...">
+                            <input class="burts" type="text" name="burts5" id="I5" placeholder="...">
                         </div>
                     </div>             
                 </div>
             </div>
             <!--beidzas bišu šunu lauks-->
             <div class="izmetati_burti"><!--izmētāti burtiņi-->
-                <div class="izmests_burts">P</div>
-                <div class="izmests_burts">A</div>
-                <div class="izmests_burts">S</div>
-                <div class="izmests_burts">A</div>
-                <div class="izmests_burts">K</div>
-                <div class="izmests_burts">A</div>
+                <div class="izmests_burts" id='B0'>P</div>
+                <div class="izmests_burts" id='B1'>A</div>
+                <div class="izmests_burts" id='B2'>S</div>
+                <div class="izmests_burts" id='B3'>A</div>
+                <div class="izmests_burts" id='B4'>K</div>
+                <div class="izmests_burts" id='B5'>A</div>
             </div><!--beidzas izmētātie burtiņi-->
+
+            <input type="submit" onclick="parbaude()">
         </article>
         </section>
         <footer>
@@ -88,11 +73,51 @@
 
     </div><!--beidzas wrapper-->
 
+    <script>
 
+        let dotieBurti = ["p","a","s","a","k","a"]
+        let atvertieLaukumi=[]
+        
+
+
+
+        function parbaude()
+            { 
+                let burts0= document.getElementById("I0").value 
+                let burts1=document.getElementById("I1").value 
+                let burts2=document.getElementById("I2").value 
+                let burts3=document.getElementById("I3").value 
+                let burts4=document.getElementById("I4").value 
+                let burts5=document.getElementById("I5").value
+
+               
+                             
+                atvertieLaukumi.push(burts0)     
+                atvertieLaukumi.push(burts1)     
+                atvertieLaukumi.push(burts2)     
+                atvertieLaukumi.push(burts3)   
+                atvertieLaukumi.push(burts4)
+                atvertieLaukumi.push(burts5) 
+                
+                
+                if((dotieBurti[0] == atvertieLaukumi[0]) &&(dotieBurti[1] == atvertieLaukumi[1])
+                    &&(dotieBurti[2] == atvertieLaukumi[2]) &&(dotieBurti[3] == atvertieLaukumi[3])
+                    &&(dotieBurti[4] == atvertieLaukumi[4]) &&(dotieBurti[5] == atvertieLaukumi[5])
+                )
+                    {
+                
+                         alert("apsveicam")
+                     }
+                     else
+                     {
+                         alert("mēģini vēlreiz")
+                     }
+
+                console.log(atvertieLaukumi) 
+                    }  
+            
+    </script>
 
 
 </body>
 </html>
-
-
-

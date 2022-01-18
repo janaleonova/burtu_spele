@@ -4,7 +4,7 @@ html, body {
   background: linear-gradient(to bottom, rgb(107, 217, 245) , rgb(246, 246, 248) , rgb(179, 246, 124) ) no-repeat;
   }
 :root {
-  font-size: 20px;
+  font-size: 15px;
     }
 .wraper{
   margin: auto;
