@@ -78,11 +78,9 @@
         let dotieBurti = ["p","a","s","a","k","a"]
         let atvertieLaukumi=[]
         
-
-
-
         function parbaude()
-            { 
+            {   
+                let atvertieLaukumi=[]
                 let burts0= document.getElementById("I0").value 
                 let burts1=document.getElementById("I1").value 
                 let burts2=document.getElementById("I2").value 
@@ -100,21 +98,27 @@
                 atvertieLaukumi.push(burts5) 
                 
                 
+                if (JSON.stringify(dotieBurti) == JSON.stringify(atvertieLaukumi))
+                {
+                    alert("apsveicam")
+                }
+                    else
+                {
+                    alert("mēģini vēlreiz")
+                }
+                /*console.log('dotie burti '+dotieBurti)
+                console.log('atvērtie '+atvertieLaukumi)
                 if((dotieBurti[0] == atvertieLaukumi[0]) &&(dotieBurti[1] == atvertieLaukumi[1])
-                    &&(dotieBurti[2] == atvertieLaukumi[2]) &&(dotieBurti[3] == atvertieLaukumi[3])
-                    &&(dotieBurti[4] == atvertieLaukumi[4]) &&(dotieBurti[5] == atvertieLaukumi[5])
-                )
-                    {
-                
-                         alert("apsveicam")
-                     }
-                     else
-                     {
-                         alert("mēģini vēlreiz")
-                     }
+                &&(dotieBurti[2] == atvertieLaukumi[2]) &&(dotieBurti[3] == atvertieLaukumi[3])
+                &&(dotieBurti[4] == atvertieLaukumi[4]) &&(dotieBurti[5] == atvertieLaukumi[5]))
+                {            
+                    alert("apsveicam")
+                }else                {
+                    alert("mēģini vēlreiz")
+                }*/
 
-                console.log(atvertieLaukumi) 
-                    }  
+               
+            }  
             
     </script>
 
