@@ -80,7 +80,16 @@
         
         function parbaude()
             {   
-                let atvertieLaukumi=[]
+                let burts = "";
+                for (let i = 0; i < dotieBurti.length; i++) {
+                burts = document.getElementById("I"+i).value;  /*cars[i] + "<br>";*/
+                console.log(burts)
+                atvertieLaukumi.push(burts)
+                }
+                    
+console.log("dotie burti " +dotieBurti)
+console.log("ievadītie burti "+atvertieLaukumi)
+               /*let atvertieLaukumi=[]
                 let burts0= document.getElementById("I0").value 
                 let burts1=document.getElementById("I1").value 
                 let burts2=document.getElementById("I2").value 
@@ -88,14 +97,12 @@
                 let burts4=document.getElementById("I4").value 
                 let burts5=document.getElementById("I5").value
 
-               
-                             
-                atvertieLaukumi.push(burts0)     
+                /*atvertieLaukumi.push(burts0)     
                 atvertieLaukumi.push(burts1)     
                 atvertieLaukumi.push(burts2)     
                 atvertieLaukumi.push(burts3)   
                 atvertieLaukumi.push(burts4)
-                atvertieLaukumi.push(burts5) 
+                atvertieLaukumi.push(burts5) */
                 
                 
                 if (JSON.stringify(dotieBurti) == JSON.stringify(atvertieLaukumi))
