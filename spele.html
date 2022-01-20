@@ -66,8 +66,8 @@
            
 
             <button type="submit" onclick="parbaude()" id="submit">Pārbaude</button> 
-            <button type="submit" onclick="nakamaisVards()" id="next">turpināt</button> 
-            <button type="submit" onclick="parbaude()" id="repeat">Mēģināt vēlreiz</button> 
+            <button type="submit" onclick="parbaude()" id="next">turpināt</button> 
+            <button type="submit" onclick="" id="repeat">Mēģināt vēlreiz</button> 
         </article>
         </section>
         <footer>
@@ -77,8 +77,8 @@
     </div><!--beidzas wrapper-->
 
     <script>
-       // document.getElementById('next').style.visibility='hidden';
-       // document.getElementById('repeat').style.visibility='hidden';
+       document.getElementById('next').style.visibility='hidden';
+       document.getElementById('repeat').style.visibility='hidden';
         document.getElementById('submit').style.visibility='visible';
        
         var spelesVardi=['tttttt','žirafe','ramona', 'pasaka'] //masīvs ar vārdiem
@@ -116,6 +116,8 @@
                 else
             {
                 alert('navOK')
+                document.getElementById('repeat').style.visibility='visible';
+                document.getElementById('repeat').style.visibility='hidden';
             }
         }
 
