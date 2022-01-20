@@ -56,15 +56,17 @@
             </div>
             <!--beidzas bišu šunu lauks-->
             <div class="izmetati_burti"><!--izmētāti burtiņi-->
-                <div class="izmests_burts" id='B0'>P</div>
-                <div class="izmests_burts" id='B1'>A</div>
-                <div class="izmests_burts" id='B2'>S</div>
-                <div class="izmests_burts" id='B3'>A</div>
-                <div class="izmests_burts" id='B4'>K</div>
-                <div class="izmests_burts" id='B5'>A</div>
+                <div class="izmests_burts" id='B0'></div>
+                <div class="izmests_burts" id='B1'></div>
+                <div class="izmests_burts" id='B2'></div>
+                <div class="izmests_burts" id='B3'></div>
+                <div class="izmests_burts" id='B4'></div>
+                <div class="izmests_burts" id='B5'></div>
             </div><!--beidzas izmētātie burtiņi-->
 
-            <input type="submit" onclick="parbaude()">
+            <button type="submit"onclick="parbaude()" id="submit">Pārbaude</button> 
+            <button type="submit"onclick="parbaude()" id="next">turpināt</button> 
+            <button type="submit"onclick="parbaude()" id="repeat">Mēģināt vēlreiz</button> 
         </article>
         </section>
         <footer>
@@ -74,22 +76,68 @@
     </div><!--beidzas wrapper-->
 
     <script>
-
-        let dotieBurti = ["p","a","s","a","k","a"]
+        document.getElementById('next').style.visibility='hidden';
+        document.getElementById('repeat').style.visibility='hidden';
+        document.getElementById('submit').style.visibility='visible';
+       
+        let spelesVardi=['pasaka', 'ramona']
+        let dotieBurti = []
         let atvertieLaukumi=[]
+        let izmestieBurti =[]
+        let v=0
         
-        function parbaude()
-            {   
-                let burts = "";
-                for (let i = 0; i < dotieBurti.length; i++) {
-                burts = document.getElementById("I"+i).value;  /*cars[i] + "<br>";*/
-                console.log(burts)
-                atvertieLaukumi.push(burts)
+        let izmestaisVards=spelesVardi[v]
+        var b = izmestaisVards;  
+                    for (var z = 0; z < b.length; z++) {
+                        izmestieBurti.push(b.charAt(z))  
+                        document.getElementById("B"+z).innerHTML = b.charAt(z);
+                    }
+                    console.log('vārda skaits0:'+v)  
+                     console.log("tukši"+dotieBurti)
+                     console.log("izmestie burti "+izmestieBurti)
+
+                function parbaude(){
+           
+                vards = spelesVardi[v];  //nolasa vārdu no masīva
+                console.log(vards)
+                    var s = vards;  
+                    for (var x = 0; x < s.length; x++) {
+                        dotieBurti.push(s.charAt(x))  
+                    console.log(s.charAt(x));
+                    console.log('sadalītais vards'+dotieBurti) //sadala vārdu burtos
+                    console.log('vārda skaits1:'+v)  
                 }
+                    let burts = "";
+                    for (let i = 0; i < dotieBurti.length; i++) {
+                        burts = document.getElementById("I"+i).value;  
+                        console.log('ievaditais burts '+burts)
+                        atvertieLaukumi.push(burts) //nolasa ievadītos burtus 
                     
-console.log("dotie burti " +dotieBurti)
-console.log("ievadītie burti "+atvertieLaukumi)
-               /*let atvertieLaukumi=[]
+                }
+                     
+                    console.log('dotie'+dotieBurti)
+                    console.log('atverti'+atvertieLaukumi)         
+                if (JSON.stringify(dotieBurti) === JSON.stringify(atvertieLaukumi))
+                {
+                   alert('irOK')
+                    document.getElementById('next').style.visibility='visible';
+                    v=v+1
+                    console.log("varda skaits"+v)
+                    burts=""
+
+                }
+                    else
+                {
+                    alert('navOK')
+                    v=v+1
+                    console.log('vārda skaits'+v)  
+                    document.getElementById('repeat').style.visibility='visible';
+                
+         
+            }
+            
+
+                /*let atvertieLaukumi=[]
                 let burts0= document.getElementById("I0").value 
                 let burts1=document.getElementById("I1").value 
                 let burts2=document.getElementById("I2").value 
@@ -97,23 +145,14 @@ console.log("ievadītie burti "+atvertieLaukumi)
                 let burts4=document.getElementById("I4").value 
                 let burts5=document.getElementById("I5").value
 
-                /*atvertieLaukumi.push(burts0)     
+                atvertieLaukumi.push(burts0)     
                 atvertieLaukumi.push(burts1)     
                 atvertieLaukumi.push(burts2)     
                 atvertieLaukumi.push(burts3)   
                 atvertieLaukumi.push(burts4)
-                atvertieLaukumi.push(burts5) */
-                
-                
-                if (JSON.stringify(dotieBurti) == JSON.stringify(atvertieLaukumi))
-                {
-                    alert("apsveicam")
-                }
-                    else
-                {
-                    alert("mēģini vēlreiz")
-                }
-                /*console.log('dotie burti '+dotieBurti)
+                atvertieLaukumi.push(burts5) 
+
+                console.log('dotie burti '+dotieBurti)
                 console.log('atvērtie '+atvertieLaukumi)
                 if((dotieBurti[0] == atvertieLaukumi[0]) &&(dotieBurti[1] == atvertieLaukumi[1])
                 &&(dotieBurti[2] == atvertieLaukumi[2]) &&(dotieBurti[3] == atvertieLaukumi[3])
