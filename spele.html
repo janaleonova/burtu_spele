@@ -116,12 +116,27 @@
                 v=v+1
                 document.getElementById('next').style.visibility='visible'; //ja ir pareizi, parādās turpināt
                 document.getElementById('submit').style.visibility='hidden';
+                
+                for (var c = 0; c < spelesVardi[v].length; c++) 
+                    {                              //izmetas piedāvātais vārds
+                        let r="B"+c
+                        document.getElementById(r).innerHTML =" ";  //iztīra atbildes                      
+                        document.getElementById("B0").innerHTML =" Lieliski, tev tas izdevās ";  //iztīra atbildes 
+                    }
+
             }
                 else
             {
-                console.log("Nav pareizi")
+           
                 document.getElementById('submit').style.visibility='hidden';
                 document.getElementById('repeat').style.visibility='visible';
+                for (var c = 0; c < spelesVardi[v].length; c++) 
+                    {                              //izmetas piedāvātais vārds
+                        let r="B"+c
+                        document.getElementById(r).innerHTML =" ";  //iztīra atbildes                      
+                        document.getElementById("B0").innerHTML =" Ai.... pamēģināsim vēlreiz... ";  //iztīra atbildes 
+                    }
+
             }
         }
 
