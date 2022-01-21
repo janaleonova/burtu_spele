@@ -369,13 +369,32 @@ footer {
  
 }
 .button{
- 
+  
   margin: 0.5rem;
   display: block;
   float: left;
 }
-
-
+.poguVieta{
+ 
+position: relative;
+}
+.vadibasPoga{
+  background-image: url(img/makonis.png);
+  background-color: transparent;
+  border: transparent;
+  background-size: 13rem;
+  background-repeat: no-repeat;
+  height: 9rem;
+  width: 13rem;
+  margin: 0.5rem;
+  font-size: 2rem;
+  position: absolute;
+  right: 0px;
+}
+.norades{
+  font-size: 2rem;
+  
+}
 
 
 
