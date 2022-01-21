@@ -65,9 +65,9 @@
             </div><!--beidzas izmētātie burtiņi-->
            
 
-            <button type="submit" onclick="parbaude()" id="submit">Pārbaude</button> 
-            <button type="submit" onclick="parbaude()" id="next">turpināt</button> 
-            <button type="submit" onclick="" id="repeat">Mēģināt vēlreiz</button> 
+            <button  onclick="parbaude()" id="submit">Pārbaude</button> 
+            <button onclick="nakamaisVards()" id="next">turpināt</button> 
+            <button  onclick="atkartotsGajiens()" id="repeat">Mēģināt vēlreiz</button> 
         </article>
         </section>
         <footer>
@@ -88,62 +88,113 @@
         var v=0 //raunds
         let burts = "";
         
-        var b = spelesVardi[v] //izvēlētais vārds
-         for (var z = 0; z < b.length; z++)    //burtu izmešana priekš parauga
+         //izvēlētais vārds
+         for (var z = 0; z < spelesVardi[v].length; z++)    //burtu izmešana priekš parauga
         {
-            izmestieBurti.push(b.charAt(z))  
-            document.getElementById("B"+z).innerHTML = b.charAt(z);
+            izmestieBurti.push(spelesVardi[v].charAt(z))  
+            document.getElementById("B"+z).innerHTML = spelesVardi[v].charAt(z);
         }
         
         function parbaude()
         
-        {               // pārbauda ierakstīto vārdu
+        {              // pārbauda ierakstīto vārdu
             document.getElementById('submit').style.visibility='hidden' //pazūt pārbaudes poga
-            for (var x = 0; x < b.length; x++) {
-                dotieBurti.push(b.charAt(x))  
-                }
+       
             
             for (let i = 0; i < dotieBurti.length; i++) //nolasa ievadītos burtus
-            {
-                burts = document.getElementById("I"+i).value;  
-                atvertieLaukumi.push(burts)  
+            { let burts;
+              let n="I"+i
+                burts = document.getElementById(n).value;  
+                atvertieLaukumi.push(burts)           
             }
             console.log(dotieBurti + ' salidzini '+atvertieLaukumi) 
             if (JSON.stringify(dotieBurti) === JSON.stringify(atvertieLaukumi))
             { 
+                v=v+1
                 document.getElementById('next').style.visibility='visible'; //ja ir pareizi, parādās turpināt
+                document.getElementById('submit').style.visibility='hidden';
             }
                 else
             {
-                alert('navOK')
+                console.log("Nav pareizi")
+                document.getElementById('submit').style.visibility='hidden';
                 document.getElementById('repeat').style.visibility='visible';
-                document.getElementById('repeat').style.visibility='hidden';
             }
         }
 
-    function nakamaisVards(){
+    function nakamaisVards() 
+    {
        
         izmestieBurti=[]
         dotieBurti=[]; 
         atvertieLaukumi=[]   
-        v=v+1
+        
                
         for (var z2 = 0; z2 < spelesVardi[v].length; z2++) 
         {                              //izmetas piedāvātais vārds
             izmestieBurti.push(spelesVardi[v].charAt(z2))  
-            document.getElementById("B"+z2).innerHTML = spelesVardi[v].charAt(z2);
+            document.getElementById("B"+z2).innerHTML = spelesVardi[v].charAt(z2); //ievada redzamos burtus
             let m="I"+z2
-            document.getElementById(m).value='';  
-            console.log(m) 
-                }
-                
-        console.log('vārda skaits0:'+b.charAt(z2))  
-        console.log("tukši"+dotieBurti)
-        console.log("izmestie burti "+izmestieBurti)
+            document.getElementById(m).value='';  //iztīra atbildes
+             
+        }
+        for (var x = 0; x < spelesVardi[v].length; x++) 
+        {
+            dotieBurti.push(spelesVardi[v].charAt(x))
+        }   
+       
         document.getElementById('submit').style.visibility='visible';
         document.getElementById('next').style.visibility='hidden';
     }
-    
+    function atkartotsGajiens()
+    {alert("ho ")
+        
+
+        izmestieBurti=[]
+        dotieBurti=[]; 
+        atvertieLaukumi=[]   
+        
+               
+        for (var z3 = 0; z3 < spelesVardi[v].length; z3++) 
+        {                              //izmetas piedāvātais vārds
+            izmestieBurti.push(spelesVardi[v].charAt(z3))  
+            document.getElementById("B"+z3).innerHTML = spelesVardi[v].charAt(z3); //ievada redzamos burtus
+            let m3="I"+z3
+            document.getElementById(m3).value='';  //iztīra atbildes
+             
+        }
+        for (var x3 = 0; x3 < spelesVardi[v].length; x3++) 
+        {
+            dotieBurti.push(spelesVardi[v].charAt(x3))
+        }   
+       
+        document.getElementById('submit').style.visibility='visible';
+        document.getElementById('repeat').style.visibility='hidden';
+    }
+
+    /*unction atkartotsGajiens(){
+        izmestieBurti=[]
+        dotieBurti=[]; 
+        atvertieLaukumi=[]   
+   
+               
+        for (var z2 = 0; z2 < spelesVardi[v].length; z2++) 
+        {                              //izmetas piedāvātais vārds
+            izmestieBurti.push(spelesVardi[v].charAt(z2))  
+            document.getElementById("B"+z2).innerHTML = spelesVardi[v].charAt(z2); //ievada redzamos burtus
+            let m="I"+z2
+            document.getElementById(m).value='';  //iztīra atbildes
+             
+        }
+        for (var x = 0; x < spelesVardi[v].length; x++) 
+        {
+            dotieBurti.push(spelesVardi[v].charAt(x))
+        }   
+       
+        document.getElementById('submit').style.visibility='visible';
+        document.getElementById('repeat').style.visibility='hidden';*/
+
+   
 
         /*let atvertieLaukumi=[]
         let burts0= document.getElementById("I0").value 
