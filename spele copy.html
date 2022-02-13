@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="style.css" rel="stylesheet">
+    <title>Burtu spēle</title>
+</head>
+
+
+<body>
+    <div class="wraper">
+        <header>
+            <nav>
+                <div class="izvelne"><a href="index.html"><img class="img_bite_sm" src="img/bite1.gif">sākums</a></div>
+                <div class="izvelne"><a href="spele.html"><img class="img_bite_sm" src="img/bite1.gif">sākt spēli</a></div>
+                <div class="izvelne"><a href="top.html"><img class="img_bite_sm" src="img/bite2.gif">rezultātu tops</a></div>
+                <div class="izvelne"><a href="help.html"><img class="img_bite_sm" src="img/bite3.gif">pamācība</a></div>
+                <div class="izvelne"><a href="login.html"><img class="img_bite_sm" src="img/bite4.gif">reģistrēties</a></div>
+            </nav>
+        </header>
+        <section>
+               
+       <article>
+            <!--bišu šūnu lauks burtu ievadei-->
+            <div class="speles_lauks">
+                <div class="container2">
+                    <div class="suna">
+                        <div class="burta_lauks">
+                            <input class="burts" type="text" name="burts0" id="I0" placeholder="...">
+                        </div>
+                    </div>
+                    <div class="suna">
+                        <div class="burta_lauks">
+                            <input class="burts" type="text" name="burts1" id="I1" placeholder="...">
+                        </div>
+                    </div>
+                    <div class="suna">
+                        <div class="burta_lauks">
+                            <input class="burts" type="text" name="burts2" id="I2"  placeholder="...">
+                        </div>
+                    </div>                   <div class="suna">
+                        <div class="burta_lauks">
+                            <input class="burts" type="text" name="burts3" id="I3"  placeholder="...">
+                        </div>
+                    </div>                   <div class="suna">
+                        <div class="burta_lauks">
+                            <input class="burts" type="text" name="burts4" id="I4"  placeholder="...">
+                        </div>
+                    </div>
+                    <div class="suna">
+                        <div class="burta_lauks">
+                            <input class="burts" type="text" name="burts5" id="I5" placeholder="...">
+                        </div>
+                    </div>             
+                </div>
+            </div>
+            <!--beidzas bišu šunu lauks-->
+            <div class="izmetati_burti"><!--izmētāti burtiņi-->
+                <div class="izmests_burts" id='B0'></div>
+                <div class="izmests_burts" id='B1'></div>
+                <div class="izmests_burts" id='B2'></div>
+                <div class="izmests_burts" id='B3'></div>
+                <div class="izmests_burts" id='B4'></div>
+                <div class="izmests_burts" id='B5'></div>
+            </div><!--beidzas izmētātie burtiņi-->
+           
+
+            <button type="submit" onclick="parbaude()" id="submit">Pārbaude</button> 
+            <button type="submit" onclick="parbaude()" id="next">turpināt</button> 
+            <button type="submit" onclick="" id="repeat">Mēģināt vēlreiz</button> 
+        </article>
+        </section>
+        <footer>
+            <img class="foot_img" src="img/grass.png">
+        </footer>
+
+    </div><!--beidzas wrapper-->
+
+    <script>
+       document.getElementById('next').style.visibility='hidden';
+       document.getElementById('repeat').style.visibility='hidden';
+        document.getElementById('submit').style.visibility='visible';
+       
+        var spelesVardi=['tttttt','žirafe','ramona', 'pasaka'] //masīvs ar vārdiem
+        var dotieBurti = [] // masīvs no izvēlētā vārda burtiem
+        var atvertieLaukumi=[] //masīvs, kurā ieraksta spēlētājs burtus
+        var izmestieBurti =[] //parauga burtiņi, no kā veido vārdu
+        var v=0 //raunds
+        let burts = "";
+        
+        var b = spelesVardi[v] //izvēlētais vārds
+         for (var z = 0; z < b.length; z++)    //burtu izmešana priekš parauga
+        {
+            izmestieBurti.push(b.charAt(z))  
+            document.getElementById("B"+z).innerHTML = b.charAt(z);
+        }
+        
+        function parbaude()
+        
+        {               // pārbauda ierakstīto vārdu
+            document.getElementById('submit').style.visibility='hidden' //pazūt pārbaudes poga
+            for (var x = 0; x < b.length; x++) {
+                dotieBurti.push(b.charAt(x))  
+                }
+            
+            for (let i = 0; i < dotieBurti.length; i++) //nolasa ievadītos burtus
+            {
+                burts = document.getElementById("I"+i).value;  
+                atvertieLaukumi.push(burts)  
+            }
+            console.log(dotieBurti + ' salidzini '+atvertieLaukumi) 
+            if (JSON.stringify(dotieBurti) === JSON.stringify(atvertieLaukumi))
+            { 
+                document.getElementById('next').style.visibility='visible'; //ja ir pareizi, parādās turpināt
+            }
+                else
+            {
+                alert('navOK')
+                document.getElementById('repeat').style.visibility='visible';
+                document.getElementById('repeat').style.visibility='hidden';
+            }
+        }
+
+    function nakamaisVards(){
+       
+        izmestieBurti=[]
+        dotieBurti=[]; 
+        atvertieLaukumi=[]   
+        v=v+1
+               
+        for (var z2 = 0; z2 < spelesVardi[v].length; z2++) 
+        {                              //izmetas piedāvātais vārds
+            izmestieBurti.push(spelesVardi[v].charAt(z2))  
+            document.getElementById("B"+z2).innerHTML = spelesVardi[v].charAt(z2);
+            let m="I"+z2
+            document.getElementById(m).value='';  
+            console.log(m) 
+                }
+                
+        console.log('vārda skaits0:'+b.charAt(z2))  
+        console.log("tukši"+dotieBurti)
+        console.log("izmestie burti "+izmestieBurti)
+        document.getElementById('submit').style.visibility='visible';
+        document.getElementById('next').style.visibility='hidden';
+    }
+    
+
+        /*let atvertieLaukumi=[]
+        let burts0= document.getElementById("I0").value 
+        let burts1=document.getElementById("I1").value 
+        let burts2=document.getElementById("I2").value 
+        let burts3=document.getElementById("I3").value 
+        let burts4=document.getElementById("I4").value 
+        let burts5=document.getElementById("I5").value
+
+        atvertieLaukumi.push(burts0)     
+        atvertieLaukumi.push(burts1)     
+        atvertieLaukumi.push(burts2)     
+        atvertieLaukumi.push(burts3)   
+        atvertieLaukumi.push(burts4)
+        atvertieLaukumi.push(burts5) 
+
+        console.log('dotie burti '+dotieBurti)
+        console.log('atvērtie '+atvertieLaukumi)
+        if((dotieBurti[0] == atvertieLaukumi[0]) &&(dotieBurti[1] == atvertieLaukumi[1])
+        &&(dotieBurti[2] == atvertieLaukumi[2]) &&(dotieBurti[3] == atvertieLaukumi[3])
+        &&(dotieBurti[4] == atvertieLaukumi[4]) &&(dotieBurti[5] == atvertieLaukumi[5]))
+        {            
+            alert("apsveicam")
+        }else                {
+            alert("mēģini vēlreiz")
+        }*/
+
+        
+             
+            
+    </script>
+
+
+</body>
+</html>
