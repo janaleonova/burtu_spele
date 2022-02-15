@@ -23,7 +23,7 @@
 
 <div class="topnav">
     <a href="index.html"><img class="img_bite_sm" src="img/bite1.gif">sākums</a>
-    <a href="spele.html"><img class="img_bite_sm" src="img/bite1.gif">sākt spēli</a>
+    <a href="#" id="mylink2"><img class="img_bite_sm" src="img/bite1.gif">sākt spēli</a>
     <a href="top.html"><img class="img_bite_sm" src="img/bite2.gif">rezultātu tops</a>
     <a href="help.html"><img class="img_bite_sm" src="img/bite3.gif">pamācība</a>
     <a href="login.html"><img class="img_bite_sm" src="img/bite4.gif">reģistrēties</a>
@@ -31,7 +31,7 @@
 
 <div class="row">
   <div class="leftcolumn">
-    <div class="card"><a href="spele.html" id="mylink" >
+    <div class="card"><a href="#" id="mylink" >
         <div class="sunuLauks">
             <div class="container">
                 <div class="suna"></div>
@@ -109,7 +109,7 @@
   //rezultatuTablo.style.padding = '25px';
 
   ievadamieBurti.setAttribute('type','text');
-  ievadamieBurti.classList.add('teksta_ievade');
+  ievadamieBurti.classList.add('tekstaIevade');
   //redzamieBurti.style.textAlign = 'center';
   btn.textContent = "SĀKT SPĒLI!";
   //redzamieBurti.style.color = "grey";
@@ -130,14 +130,26 @@
   btn.style.display = 'none';    
   
   mylink.addEventListener('click',(e)=>{
-   
-      
-   
-  jaunsVards();
+    x=atveramieBurti;
+    for (var y = 0; y < x; y++) {
+      document.getElementById("burts"+y).remove();
+      atveramieBurti=0;
+    }
+    jaunsVards();
   });
+
+  mylink2.addEventListener('click',(e)=>{
+    x=atveramieBurti;
+    for (var y = 0; y < x; y++) {
+      document.getElementById("burts"+y).remove();
+      atveramieBurti=0;
+    }
+    jaunsVards();
+  });
+
    //lai uzsāktu spēli bez atsevišķas pogas, vnk uzspiežot uz šūnām
   btn.addEventListener('click',(e)=>{
-    console.log(atveramieBurti);
+  
     x=atveramieBurti;
     for (var y = 0; y < x; y++) {
       document.getElementById("burts"+y).remove();
@@ -252,13 +264,15 @@
                       burtuLauks.append(burts);
                       burts.append(burtaIeraksts);
 
-                      burtaIeraksts.classList.add('burta_lauks');
+                      burtaIeraksts.classList.add('burtaLauks');
                       burtaIeraksts.setAttribute('id','burtaIeraksts'+z);
 
                       burts.classList.add('suna');
-                      burts.setAttribute('id','burts'+z)
+                     
+                      burts.setAttribute('id','burts'+z);
                       
                       burtaIeraksts.textContent=(b.charAt(z));
+
                       atveramieBurti++;
                       
                   }
