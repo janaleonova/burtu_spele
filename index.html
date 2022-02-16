@@ -97,29 +97,15 @@
   const sunuLauks = document.querySelector('.sunuLauks');
   const suna = document.querySelector('.suna');
   const btn = document.createElement('button');
- //const redzamieBurti = document.createElement('div');
   const ievadamieBurti = document.createElement('input');
-  //const rezultatuTablo = document.createElement('div');
   const rezultatuTablo = document.querySelector('.score');
   const burtuLauks = document.querySelector('.container2');
   const dzesamaisLauks = document.createElement('div') 
   var atveramieBurti=0;
-  //rezultatuTablo.style.color= 'white';
-  //rezultatuTablo.style.backgroundColor = 'black';
-  //rezultatuTablo.style.padding = '25px';
-
   ievadamieBurti.setAttribute('type','text');
   ievadamieBurti.classList.add('tekstaIevade');
-  //redzamieBurti.style.textAlign = 'center';
   btn.textContent = "SĀKT SPĒLI!";
-  //redzamieBurti.style.color = "grey";
-  //redzamieBurti.textContent = "Lai sāktu spēli, spied uz šūnu lauka! ";
-  //redzamieBurti.style.letterSpacing = '0';
-  
-  /// pievienojam laukus HTML lapai
-  //spelesLauks.append(redzamieBurti);
   spelesLauks.append(ievadamieBurti);
-  //spelesLauks.prepend(rezultatuTablo);
   spelesLauks.append(btn);
 
   const spelesVardi = ['zaķis', 'kaķis', 'pīle'];
@@ -140,20 +126,11 @@ fetch(endpoint1)
     rows.forEach((row) => {
     const temp1 = (row.c);
     const div = document.createElement('div');
-
-    temp1.forEach((cell)=>{
-        spelesVardi.push(cell.v);
-    })
-    spelesLauks.append(div);
+      temp1.forEach((cell)=>{
+          spelesVardi.push(cell.v);
+      })    
     });
-})
-
-
-
-
-
-
-
+}) //beidzas vārdu ielasīšana masīvā no google
 
   rezultatuTablo.style.display="none";
   ievadamieBurti.style.display = 'none';
@@ -175,30 +152,30 @@ fetch(endpoint1)
   }
 
   function jaunsVards(){
-      sunuLauks.style.display = "none";
-      if(spelesVardi.length<=0){
-          spelesLauks.innerHTML="<div>Spēles beigas</div>"
-          spelesLauks.innerHTML+=`Tu ieguvi ${spele.rezultats}, kļūdījies ${spele.nepareizi}!`;
-      }else{
-      ievadamieBurti.disabled = false;
-      ievadamieBurti.value='';
-      ievadamieBurti.style.borderWidth='1px';
-      ievadamieBurti.style.borderColor="#eee";
-      rezultatuTablo.style.display="block";
-      ievadamieBurti.style.display = 'inline';
-      btn.style.display = 'none';
-      ievadamieBurti.focus();
-      spelesVardi.sort(()=>{return 0.5 - Math.random()});
-      spele.izveletaisVards= spelesVardi.shift();
-      console.log(spelesVardi);
-      spele.atlikusieVardi = spelesVardi.length;
-      spele.sajauktsVards = burtuJauksana(spele.izveletaisVards);
-     
-      pievienotRezultatu();
-      ievadamieBurti.setAttribute('maxlength', spele.izveletaisVards.length);
-      spele.atlikusieVardi=spelesVardi.length;
-      }
+    sunuLauks.style.display = "none";
+    if(spelesVardi.length<=0){
+        spelesLauks.innerHTML="<div>Spēles beigas</div>"
+        spelesLauks.innerHTML+=`Tu ieguvi ${spele.rezultats}, kļūdījies ${spele.nepareizi}!`;
+    }else{
+    ievadamieBurti.disabled = false;
+    ievadamieBurti.value='';
+    ievadamieBurti.style.borderWidth='1px';
+    ievadamieBurti.style.borderColor="#eee";
+    rezultatuTablo.style.display="block";
+    ievadamieBurti.style.display = 'inline';
+    btn.style.display = 'none';
+    ievadamieBurti.focus();
+    spelesVardi.sort(()=>{return 0.5 - Math.random()});
+    spele.izveletaisVards= spelesVardi.shift();
+    console.log(spelesVardi);
+    spele.atlikusieVardi = spelesVardi.length;
+    spele.sajauktsVards = burtuJauksana(spele.izveletaisVards);
+    
+    pievienotRezultatu();
+    ievadamieBurti.setAttribute('maxlength', spele.izveletaisVards.length);
+    spele.atlikusieVardi=spelesVardi.length;
     }
+  }
 
   ievadamieBurti.addEventListener('keyup', (e)=>{
       ievadamieBurti.style.borderColor = '#eee';
@@ -207,6 +184,7 @@ fetch(endpoint1)
           vardaParbaude();
       }
   })
+
   function pievienotRezultatu(){
       let pagaiduIzvade = `Rezultāts: ${spele.rezultats}. Kļūdainie mēģinājumi ${spele.nepareizi}`;
       rezultatuTablo.innerHTML = pagaiduIzvade;
@@ -230,8 +208,6 @@ fetch(endpoint1)
       }
       pievienotRezultatu();
   }
-
-
 
   function burtuJauksana(orginalvards){
       let jauktsVards = orginalvards.split('');
