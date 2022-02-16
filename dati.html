@@ -1,26 +1,40 @@
+
+<!DOCTYPE html>
 <html>
-<head>
-    
-</head>
- 
+    <head>
+        <title>Share your Google Sheets</title>
+    </head>
 <body>
-    <h1 style="text-align: center;">User Data</h1>
     <table class="output"></table>
-    <script >
+    <script>
 
 const sheetId = '1XlqCA7CnGrvL91Wjb4E_In8969FLA6QsyDthm2_U-HM';
-const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?`;
+const base = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?`;
 
-fetch(url)
-.then(res =>res.text())
-.then(rep =>{
-    console.log(rep);
-    const data=JSON.prase(rep.substr(47).sliec(0,-2));
-    console.log(data);
-})
-
-
-   </script>
+const output = document.querySelector('.output');
+const query = encodeURIComponent('Select A,B,C where C > 3 limit 20');
+const url = base + '&tq=' + query;
+    fetch(url)
+    .then(res => res.text())
+    .then(rep =>{
+        const data = JSON.parse(rep.substr(47).slice(0,-2));
+        const row = document.createElement('tr');
+        output.append(row);
+        data.table.cols.forEach((heading)=>{
+            const cell = document.createElement('td');
+            cell.textContent = heading.label;
+            row.append(cell);
+        })
+        data.table.rows.forEach((main)=>{
+            const container = document.createElement('tr');
+            output.append(container);
+            main.c.forEach((ele)=>{
+                const cell = document.createElement('td');
+                cell.textContent = ele.v;
+                container.append(cell);
+            })
+        })
+    })
+    </script>
 </body>
- 
 </html>
