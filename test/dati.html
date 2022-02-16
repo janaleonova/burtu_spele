@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            display: inline-block;
+            width: 25%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="output"></div>
+    <script >
+    const output= document.querySelector('.output');
+const url ='https://docs.google.com/spreadsheets/d/';
+const ssid = '1ilaxRabk_2VQPtNBkh9qzPYhp5lDCV4mq7YQEmUz-io';
+const query1 =`/gviz/tq?`;
+const endpoint1 = `${url}${ssid}${query1}`;
+
+console.log (endpoint1);
+output.textContent = endpoint1;
+  
+fetch(endpoint1)
+.then(res=>res.text())
+.then(data => {
+    const temp = data.substring(47).slice(0,-2);
+   // console.log(temp);
+    const json = JSON.parse(temp);
+    //console.log(json.table.cols);
+    const rows = json.table.rows;
+    rows.forEach((row) => {
+    const temp1 = (row.c);
+    const div = document.createElement('div');
+
+    temp1.forEach((cell)=>{
+        console.log(cell);
+        const box = document.createElement('div');
+        box.textContent = cell.v;
+        box.classList.add('box');
+        div.append(box);
+    })
+    output.append(div);
+    });
+})
+
+    
+    
+    </script>
+
+</body>
+</html>

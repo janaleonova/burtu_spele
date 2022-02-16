@@ -125,6 +125,36 @@
   const spelesVardi = ['zaķis', 'kaķis', 'pīle'];
   const spele ={izveletaisVards:'', sajauktsVards:'',rezultats:0, nepareizi:0, atlikusieVardi:0, izspeles:spelesVardi.length};
   
+ // ielasa vārdus no google sheets - https://docs.google.com/spreadsheets/d/1ilaxRabk_2VQPtNBkh9qzPYhp5lDCV4mq7YQEmUz-io/edit?usp=sharing 
+const url ='https://docs.google.com/spreadsheets/d/';
+const ssid = '1ilaxRabk_2VQPtNBkh9qzPYhp5lDCV4mq7YQEmUz-io';
+const query1 =`/gviz/tq?`;
+const endpoint1 = `${url}${ssid}${query1}`;
+
+fetch(endpoint1)
+.then(res=>res.text())
+.then(data => {
+    const temp = data.substring(47).slice(0,-2);
+    const json = JSON.parse(temp);
+    const rows = json.table.rows;
+    rows.forEach((row) => {
+    const temp1 = (row.c);
+    const div = document.createElement('div');
+
+    temp1.forEach((cell)=>{
+        spelesVardi.push(cell.v);
+    })
+    spelesLauks.append(div);
+    });
+})
+
+
+
+
+
+
+
+
   rezultatuTablo.style.display="none";
   ievadamieBurti.style.display = 'none';
   btn.style.display = 'none';    
@@ -136,7 +166,6 @@
       });
 
   function sunuAizversana(){
-    console.log(atveramieBurti)
     x=atveramieBurti;
     for (var y = 0; y < x; y++) {
       document.getElementById("burts"+y).remove();
@@ -148,7 +177,6 @@
   function jaunsVards(){
       sunuLauks.style.display = "none";
       if(spelesVardi.length<=0){
-          console.log ('spēles beigas')
           spelesLauks.innerHTML="<div>Spēles beigas</div>"
           spelesLauks.innerHTML+=`Tu ieguvi ${spele.rezultats}, kļūdījies ${spele.nepareizi}!`;
       }else{
@@ -169,7 +197,6 @@
       pievienotRezultatu();
       ievadamieBurti.setAttribute('maxlength', spele.izveletaisVards.length);
       spele.atlikusieVardi=spelesVardi.length;
-      console.log(spele);
       }
     }
 
@@ -189,7 +216,6 @@
       ievadamieBurti.style.borderWidth='5px';
       if(ievadamieBurti.value == spele.izveletaisVards){
           ievadamieBurti.style.borderColor='green';
-          console.log('sakrīt');
           spele.rezultats++;
           ievadamieBurti.disabled = true;
           btn.style.display='block';
@@ -198,7 +224,6 @@
          
       }else{
           ievadamieBurti.style.borderColor = 'red';
-          console.log('nesakrīt');
           ievadamieBurti.value = '';
           ievadamieBurti.focus();
           spele.nepareizi++;
@@ -212,13 +237,9 @@
       let jauktsVards = orginalvards.split('');
       jauktsVards.sort(()=>{return 0.5 - Math.random()});  
       jauktsVards=jauktsVards.join('');
-      console.log(jauktsVards+ ' sauajktais')
       if (orginalvards == jauktsVards){
-          console.log('sakrīt');
           return burtuJauksana(orginalvards)
       }
-      
-      console.log('jauktenis'+jauktsVards);
       var b = jauktsVards; 
       var izmestieBurti=[]; 
       for (var z = 0; z < b.length; z++) {
