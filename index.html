@@ -6,12 +6,12 @@
 <link rel="stylesheet" href="css/suna.css">
 <script type="text/javascript">
 
-  window.onload = function() {
-    var a = document.getElementById("mylink");
-    a.onclick = function() {
-        return false;
-    }
-  }
+  //window.onload = function() {
+   // var a = document.getElementById("mylink");
+    //a.onclick = function() {
+      //  return false;
+   // }
+  //}
 </script>
 </head>
 <body>
@@ -23,7 +23,7 @@
 
 <div class="topnav">
     <a href="index.html"><img class="img_bite_sm" src="img/bite1.gif">sākums</a>
-    <a href="#" id="mylink2"><img class="img_bite_sm" src="img/bite1.gif">sākt spēli</a>
+    <a href="#" id="mylink2" onclick="sunuAizversana()"><img class="img_bite_sm" src="img/bite1.gif">sākt spēli</a>
     <a href="top.html"><img class="img_bite_sm" src="img/bite2.gif">rezultātu tops</a>
     <a href="help.html"><img class="img_bite_sm" src="img/bite3.gif">pamācība</a>
     <a href="login.html"><img class="img_bite_sm" src="img/bite4.gif">reģistrēties</a>
@@ -31,7 +31,7 @@
 
 <div class="row">
   <div class="leftcolumn">
-    <div class="card"><a href="#" id="mylink" >
+    <div class="card"><a href="#" id="mylink1" onclick="jaunsVards();">
         <div class="sunuLauks">
             <div class="container">
                 <div class="suna"></div>
@@ -129,53 +129,29 @@
   ievadamieBurti.style.display = 'none';
   btn.style.display = 'none';    
   
-  mylink.addEventListener('click',(e)=>{
-    x=atveramieBurti;
-    for (var y = 0; y < x; y++) {
-      document.getElementById("burts"+y).remove();
-      atveramieBurti=0;
-    }
-    jaunsVards();
-  });
-
-  mylink2.addEventListener('click',(e)=>{
-    x=atveramieBurti;
-    for (var y = 0; y < x; y++) {
-      document.getElementById("burts"+y).remove();
-      atveramieBurti=0;
-    }
-    jaunsVards();
-  });
 
    //lai uzsāktu spēli bez atsevišķas pogas, vnk uzspiežot uz šūnām
   btn.addEventListener('click',(e)=>{
-  
+      sunuAizversana();   
+      });
+
+  function sunuAizversana(){
+    console.log(atveramieBurti)
     x=atveramieBurti;
     for (var y = 0; y < x; y++) {
       document.getElementById("burts"+y).remove();
       atveramieBurti=0;
     }
-    //var dzestBurtu = document.querySelector('.burts');
-    //var dzestBurtaLauks = document.querySelector('.burts');
-    //var div = document.getElementById('dzest');
-    
-   // div.remove();
-  
-  jaunsVards();
-  });
+    jaunsVards();
+  }
+
   function jaunsVards(){
-    
-    
-      console.log(spelesVardi);
       sunuLauks.style.display = "none";
-     
       if(spelesVardi.length<=0){
           console.log ('spēles beigas')
           spelesLauks.innerHTML="<div>Spēles beigas</div>"
           spelesLauks.innerHTML+=`Tu ieguvi ${spele.rezultats}, kļūdījies ${spele.nepareizi}!`;
       }else{
-
-      
       ievadamieBurti.disabled = false;
       ievadamieBurti.value='';
       ievadamieBurti.style.borderWidth='1px';
@@ -184,9 +160,6 @@
       ievadamieBurti.style.display = 'inline';
       btn.style.display = 'none';
       ievadamieBurti.focus();
-      
-      
-
       spelesVardi.sort(()=>{return 0.5 - Math.random()});
       spele.izveletaisVards= spelesVardi.shift();
       console.log(spelesVardi);
@@ -194,18 +167,13 @@
       spele.sajauktsVards = burtuJauksana(spele.izveletaisVards);
      
       pievienotRezultatu();
-     // redzamieBurti.style.fontSize='3em';
-     // redzamieBurti.style.letterSpacing= '0,5em';
       ievadamieBurti.setAttribute('maxlength', spele.izveletaisVards.length);
-     // redzamieBurti.textContent = `${spele.sajauktsVards}`;
       spele.atlikusieVardi=spelesVardi.length;
       console.log(spele);
       }
-     
-  }
+    }
 
   ievadamieBurti.addEventListener('keyup', (e)=>{
-      //console.log(e)
       ievadamieBurti.style.borderColor = '#eee';
       ievadamieBurti.style.borderWidth = '1px';
       if (ievadamieBurti.value.length == spele.izveletaisVards.length || e.code == 'Enter'){
@@ -216,8 +184,6 @@
       let pagaiduIzvade = `Rezultāts: ${spele.rezultats}. Kļūdainie mēģinājumi ${spele.nepareizi}`;
       rezultatuTablo.innerHTML = pagaiduIzvade;
   }
-
-
 
   function vardaParbaude(){
       ievadamieBurti.style.borderWidth='5px';
@@ -255,28 +221,28 @@
       console.log('jauktenis'+jauktsVards);
       var b = jauktsVards; 
       var izmestieBurti=[]; 
-                  for (var z = 0; z < b.length; z++) {
-                      izmestieBurti.push(b.charAt(z)) 
-                      
-                      const burts = document.createElement('div');
-                      const burtaIeraksts = document.createElement('div');
-                      
-                      burtuLauks.append(burts);
-                      burts.append(burtaIeraksts);
+      for (var z = 0; z < b.length; z++) {
+          izmestieBurti.push(b.charAt(z)) 
+          
+          const burts = document.createElement('div');
+          const burtaIeraksts = document.createElement('div');
+          
+          burtuLauks.append(burts);
+          burts.append(burtaIeraksts);
 
-                      burtaIeraksts.classList.add('burtaLauks');
-                      burtaIeraksts.setAttribute('id','burtaIeraksts'+z);
+          burtaIeraksts.classList.add('burtaLauks');
+          burtaIeraksts.setAttribute('id','burtaIeraksts'+z);
 
-                      burts.classList.add('suna');
-                     
-                      burts.setAttribute('id','burts'+z);
-                      
-                      burtaIeraksts.textContent=(b.charAt(z));
+          burts.classList.add('suna');
+          
+          burts.setAttribute('id','burts'+z);
+          
+          burtaIeraksts.textContent=(b.charAt(z));
 
-                      atveramieBurti++;
-                      
-                  }
-                  return jauktsVards; 
+          atveramieBurti++;
+          
+      }
+      return jauktsVards; 
   }
 
 

@@ -1,0 +1,24 @@
+<html>
+<head>
+    
+</head>
+ 
+<body>
+    <h1 style="text-align: center;">User Data</h1>
+    <table class="output"></table>
+    <script >
+
+const sheetId = '1XlqCA7CnGrvL91Wjb4E_In8969FLA6QsyDthm2_U-HM';
+const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?`;
+
+fetch(url)
+.then(res =>res.text())
+.then(data =>{
+    console.log(data);
+})
+
+
+   </script>
+</body>
+ 
+</html>
