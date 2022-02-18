@@ -105,11 +105,33 @@
   ievadamieBurti.setAttribute('type','text');
   ievadamieBurti.classList.add('tekstaIevade');
   btn.textContent = "SĀKT SPĒLI!";
+  const timer = document.createElement('div');
+  const minutesCounter = document.createElement('span');
+  const secondsCounter = document.createElement('span');
+
+  spelesLauks.append(timeCounter);
+
+  timeCounter.append(minutesCounter);
+  timeCounter.append(document.createTextNode(':'));
+  minutesCounter.append(secondsCounter);
+
+  // spēles vērtības
+  const game = {totalSeconds:0, inter:{}}
+  game.inter = setInterval(setInterval,1000);
+  function setTimer(){
+    game.totalSeconds++;
+    secondsCounter.innerHTML= (game.totalSeconds % 60);
+    minutesCounter.innerHTML= Math.cell(game.totalSeconds / 60);
+  }
+  
+
   spelesLauks.append(ievadamieBurti);
   spelesLauks.append(btn);
 
+
   const spelesVardi = [];
   const spele ={izveletaisVards:'', sajauktsVards:'',rezultats:0, nepareizi:0, atlikusieVardi:0, izspeles:spelesVardi.length};
+  
   
  // ielasa vārdus no google sheets - https://docs.google.com/spreadsheets/d/1ilaxRabk_2VQPtNBkh9qzPYhp5lDCV4mq7YQEmUz-io/edit?usp=sharing 
 const url ='https://docs.google.com/spreadsheets/d/';
