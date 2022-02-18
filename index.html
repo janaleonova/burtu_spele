@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/style2.css">
 <link rel="stylesheet" href="css/suna.css">
+<script src="timer.js"></script>
 <script type="text/javascript">
 
   //window.onload = function() {
@@ -34,29 +35,7 @@
     <div class="card"><a href="#" id="mylink1" onclick="jaunsVards();">
         <div class="sunuLauks">
             <div class="container">
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-                <div class="suna"></div>
-            </div>
+             </div>
         </div></a>
         <div class="spelesLauks">
           <div class="container2">
@@ -69,6 +48,10 @@
   </div>
   <div class="rightcolumn">
     <div class="card">
+      <h3>Atlikušais laiks</h3>
+      <div> <span id="time">05:00</span> minutes!</div>
+    </div>
+    <div class="card">
       <h2>Tavi sasniegumi</h2>
       <div class="score"></div>
 
@@ -79,10 +62,7 @@
       <div><p>Uzvarētājs 2</p></div>
       <div><p>Uzvarētājs 3</p></div>
     </div>
-    <div class="card">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
-    </div>
+    
   </div>
 </div>
 
@@ -93,6 +73,20 @@
 
 
 <script>
+
+window.onload = spelesLaukums();
+
+function spelesLaukums(){
+for (var s = 0; s < 22; s++) {
+  const lauks = document.createElement('div');
+  const container = document.querySelector('.container');
+  container.append(lauks);
+  lauks.classList.add('suna');
+  
+  }
+}
+
+
   const spelesLauks = document.querySelector('.spelesLauks');
   const sunuLauks = document.querySelector('.sunuLauks');
   const suna = document.querySelector('.suna');
@@ -105,31 +99,13 @@
   ievadamieBurti.setAttribute('type','text');
   ievadamieBurti.classList.add('tekstaIevade');
   btn.textContent = "SĀKT SPĒLI!";
-  const timer = document.createElement('div');
-  const minutesCounter = document.createElement('span');
-  const secondsCounter = document.createElement('span');
 
-  spelesLauks.append(timeCounter);
-
-  timeCounter.append(minutesCounter);
-  timeCounter.append(document.createTextNode(':'));
-  minutesCounter.append(secondsCounter);
-
-  // spēles vērtības
-  const game = {totalSeconds:0, inter:{}}
-  game.inter = setInterval(setInterval,1000);
-  function setTimer(){
-    game.totalSeconds++;
-    secondsCounter.innerHTML= (game.totalSeconds % 60);
-    minutesCounter.innerHTML= Math.cell(game.totalSeconds / 60);
-  }
-  
 
   spelesLauks.append(ievadamieBurti);
   spelesLauks.append(btn);
 
 
-  const spelesVardi = [];
+  const spelesVardi = ["kaķis"];
   const spele ={izveletaisVards:'', sajauktsVards:'',rezultats:0, nepareizi:0, atlikusieVardi:0, izspeles:spelesVardi.length};
   
   
@@ -161,7 +137,8 @@ fetch(endpoint1)
 
    //lai uzsāktu spēli bez atsevišķas pogas, vnk uzspiežot uz šūnām
   btn.addEventListener('click',(e)=>{
-      sunuAizversana();   
+      sunuAizversana(); 
+      saktSkaitit();
       });
 
   function sunuAizversana(){
@@ -171,6 +148,7 @@ fetch(endpoint1)
       atveramieBurti=0;
     }
     jaunsVards();
+    
   }
 
   function jaunsVards(){
