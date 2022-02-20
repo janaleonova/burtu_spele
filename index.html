@@ -2,12 +2,11 @@
 <html>
 <head>
   <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/style2.css">
-<link rel="stylesheet" href="css/suna.css">
-<script src="timer.js"></script>
-<script src="jaunsVards.js"></script>
-<script src="vardaParbaude.js"></script>
-<script src = "burtuJauksana.js"></script>
+  <link rel="stylesheet" href="css/suna.css">
+  <script src="js/timer.js"></script>
+  <script src="js/jaunsVards.js"></script>
+  <script src="js/vardaParbaude.js"></script>
+  <script src = "js/burtuJauksana.js"></script>
 </head>
 <body>
 
@@ -42,8 +41,22 @@
     </div>
     <div class="rightcolumn">
       <div class="card">
-        <h3>Atlikušais laiks</h3>
-        <div> <span id="time">02:00</span></div>
+        <table class="tablo">
+          <tr> 
+            <td><h2>Laiks</h2></td>
+            <td><h2>Punkti</h2></td>
+          </tr>
+          <tr>
+            <td> <span id="time">02:00</span> </td>
+            <td>
+              <span id="punkti"></span>
+            </td>
+          </tr>
+        </table>
+
+
+
+        
       </div>
       <div class="card">
         <h2>Tavi sasniegumi</h2>
@@ -133,10 +146,6 @@ function saktSkaitit() {
     var minutesOfFive = 60 * 2,
         view_date = document.querySelector('#time');
     startTimer(minutesOfFive, view_date);
-
-
-
-
     sunuAizversana();
 };
 
@@ -157,7 +166,10 @@ ievadamieBurti.addEventListener('keyup', (e)=>{
 //attēlo rezultātu pēc vārda pārbaudes
 function pievienotRezultatu(){
     let pagaiduIzvade = `Rezultāts: ${spele.rezultats}. Kļūdainie mēģinājumi ${spele.nepareizi}`;
+    let punkti =(spele.rezultats*5)-spele.nepareizi;
+    console.log(punkti+'punkti');
     rezultatuTablo.innerHTML = pagaiduIzvade;
+    document.getElementById('punkti').innerHTML = punkti;
 }
 
   

@@ -1,5 +1,5 @@
 function sunuAizversana(){
-    x=atveramieBurti;
+    x=atveramieBurti;  //parbauda, cik ir atvertas sūniņas
     for (var y = 0; y < x; y++) {
       document.getElementById("burts"+y).remove();
       atveramieBurti=0;
@@ -27,8 +27,6 @@ function jaunsVards(){
         console.log(spelesVardi);
         spele.atlikusieVardi = spelesVardi.length;
         spele.sajauktsVards = burtuJauksana(spele.izveletaisVards);
-
-        pievienotRezultatu();
         ievadamieBurti.setAttribute('maxlength', spele.izveletaisVards.length);
         spele.atlikusieVardi=spelesVardi.length;
     }
