@@ -14,18 +14,20 @@
     <h1>Burtu spēle</h1>
     <p>Lieliska spēle, lieliskiem panākumiem</p>
   </div>
-
+  
   <div class="topnav">
-      <a href="templates/index.html"><img class="img_bite_sm" src="../static/img/bite1.gif">sākums</a>
+      <a href="{{ url_for('index')}}"><img class="img_bite_sm" src="../static/img/bite1.gif">sākums</a>
       <a href="#" id="mylink2" onclick="saktSkaitit()"><img class="img_bite_sm" src="../static/img/bite1.gif">sākt spēli</a>
       <a href="top.html"><img class="img_bite_sm" src="../static/img/bite2.gif">rezultātu tops</a>
       <a href="help.html"><img class="img_bite_sm" src="../static/img/bite3.gif">pamācība</a>
-      <a href="login.html"><img class="img_bite_sm" src="../static/img/bite4.gif">reģistrēties</a>
+      <a href="{{ url_for('login')}}"><img class="img_bite_sm" src="../static/img/bite4.gif">reģistrēties</a>
   </div>
-
+ 
   <div class="row">
     <div class="leftcolumn">
-      <div class="card"><a href="#" id="mylink1" onclick="saktSkaitit();">
+      <div class="card">
+        {% block content %}        
+        <a href="#" id="mylink1" onclick="saktSkaitit();">
           <div class="sunuLauks">
               <div class="container">
               </div>
@@ -33,8 +35,11 @@
           <div class="spelesLauks">
             <div class="container2">
               <!-- šūnas ielasa scripts -->
-            </div>  
+            </div> 
           </div> 
+
+{% endblock content %}
+            
       </div>
 
       
@@ -72,7 +77,7 @@
       
     </div>
   </div>
-
+  
   <div class="footer">
     <h2>Nāc rīt atkal spēlēt un uzvarēt... <div class=""></div></h2>
   </div>
