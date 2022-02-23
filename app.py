@@ -7,9 +7,9 @@ app = Flask(__name__)
 @app.route("/sarauj", methods=['GET','POST'])
 def index():
     vards = request.args.get('vards')
-    jauns_ieraksts = {"vards": vards}
+    speletajs = {"vards": vards}
     with open("dati/speletajs.json", "w", encoding="utf-8") as f:
-        f.write(json.dumps(jauns_ieraksts, indent=2, ensure_ascii=False))
+        f.write(json.dumps(speletajs, indent=2, ensure_ascii=False))
 
 
     with open("dati/top.json", "r", encoding="utf-8") as f:
@@ -24,6 +24,7 @@ def login():
 @app.route("/top",  methods=["GET", "POST"])
 def top():
     return render_template('/top.html')
+    
 
 if __name__ == "__main__":
     app.run(debug = True)
