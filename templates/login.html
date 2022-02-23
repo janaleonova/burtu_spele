@@ -2,5 +2,19 @@
 
 
 {% block content %}
-  <p>login</p>
+<h1>Dalībnieku reģistēšanās</h1>
+<p>Aizpildi sekojošo informāciju</p>
+<form action="{{ url_for('index')}}"> 
+    <label for="vards">Vārds:</label>
+    <input type="text" name="vards">
+
+    <label for="epasts">e-pasts:</label>
+    <input type="email" name="epasts">
+
+    <input type="submit" value="Apstiprināt">
+</form>
+
+
+
+  
 {% endblock content %}
