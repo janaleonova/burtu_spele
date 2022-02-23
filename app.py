@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request
+from flask import Flask, jsonify, render_template, request
 import json
 
 app = Flask(__name__)
@@ -7,15 +7,14 @@ app = Flask(__name__)
 @app.route("/sarauj", methods=['GET','POST'])
 def index():
     vards = request.args.get('vards')
-    speletajs = {"vards": vards}
+    rezult = request.args.get('punkti')
+    speletajs = {"vards": vards,
+                "punkti": rezult}
     with open("dati/speletajs.json", "w", encoding="utf-8") as f:
         f.write(json.dumps(speletajs, indent=2, ensure_ascii=False))
-
-
-    with open("dati/top.json", "r", encoding="utf-8") as f:
-        dati = json.loads(f.read())
-        
     return render_template('/index.html', vards=vards)
+
+   
 
 @app.route("/",  methods=["GET", "POST"])
 def login():
@@ -23,7 +22,11 @@ def login():
 
 @app.route("/top",  methods=["GET", "POST"])
 def top():
-    return render_template('/top.html')
+    with open("dati/top.json", "r", encoding="utf-8") as f:
+        top =json.loads(f.read())
+        
+        
+    return render_template('/top.html', top=top)
     
 
 if __name__ == "__main__":
