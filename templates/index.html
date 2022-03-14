@@ -52,7 +52,7 @@
             <td><h2>Punkti</h2></td>
           </tr>
           <tr>
-            <td> <span id="time">01:00</span> </td>
+            <td> <span id="time"></span> </td>
             <td>
               <span id="punkti"></span>
             </td>
@@ -141,28 +141,37 @@ fetch(endpoint1)
 
 
 // spēles sākums un sākas laika skaitīšana, kad ielādējas spēle\\
-const startingMinutes = 0.2;
+const startingMinutes = 0.3;
 let time = startingMinutes*60;
 const ele = document.getElementById("time");
 let interval = null;
 
 function saktSpeli(){
   jaunaVardaIelasisana();
-  laikaAtskaite();
+  saktLaikaAtskaiti();
+}
+
+function saktLaikaAtskaiti(){
   interval = setInterval(laikaAtskaite,1000);
+  laikaAtskaite()
 }
 
 function laikaAtskaite(){
-  if (time < 0) {
+    if (time <= 0) {
+          console.log(time);
+          beigtSkaititLaiku();
+      }
+    console.log(time);
+    time--;
+    const minutes = Math.floor(time/60);
+    const seconds =time % 60;
+    ele.innerHTML=minutes+":"+formatTime(seconds);
+}
+function beigtSkaititLaiku(){
+  clearInterval(interval);
+    interval=null;
         //countdown = duration;
-        spelesBeigas();
-    }
-  time--;
-  const minutes = Math.floor(time/60);
-  const seconds =time % 60;
-  ele.innerHTML=minutes+":"+formatTime(seconds);
-      
-  
+        return spelesBeigas();
 }
  function formatTime(time){
     return time < 10 ? `0${time}` : time; 
@@ -187,10 +196,12 @@ ievadamieBurti.addEventListener('keyup', (e)=>{
 //attēlo rezultātu pēc vārda pārbaudes
 function pievienotRezultatu(){
     let pagaiduIzvade = `Rezultāts: ${spele.rezultats}. Kļūdainie mēģinājumi ${spele.nepareizi}`;
-    let punkti =(spele.rezultats*5)-spele.nepareizi;
-    console.log(punkti+'punkti');
+    let punktiBezLaika = ((spele.rezultats*5)+spele.nepareizi);
+   
+    console.log(punktiBezLaika+'punkti un laiks'+time);
     rezultatuTablo.innerHTML = pagaiduIzvade;
-    document.getElementById('punkti').innerHTML = punkti;
+    document.getElementById('punkti').innerHTML = punktiBezLaika;
+    
 }
 // visu pārkopēju no js mapes, jo nestādāja kaut kā pēc pārnākšanas uz piton.. :( )
 function burtuJauksana(orginalvards){
@@ -236,16 +247,25 @@ function jaunaVardaIelasisana(){
   }
   
 function spelesBeigas(){
-      let stop = true;
-      laikaAtskaite(stop);
-      spelesLauks.innerHTML="<div>Spēles beigas</div>"
-      spelesLauks.innerHTML+=`Tu ieguvi `+document.getElementById('punkti').innerHTML+` punktus, pieļaujot ${spele.nepareizi} kļūdas!`;
+  
+  let punktiRezultatam=parseInt(document.getElementById('punkti').innerHTML);
+  let punktiparLaiku=time;
+  let punktiTotal=punktiRezultatam+punktiparLaiku;
+  console.log('punkti rezultātam'+punktiRezultatam);
+  console.log('punkti par laiku'+punktiparLaiku);
+  spelesLauks.innerHTML=`<h2>SPĒLES BEIGAS </h2><br><br> Tu ieguvi `+punktiTotal+`punktus. <br><hr><br>Pievieci ${spele.rezultats} vārdus (par katru saņenot 5 punktus), <br>Pieļaujot ${spele.nepareizi} kļūdas (par katru zaudēji 1 punktu)<br> Atlikušais laiks:`+time+`(to pieskaitām )`;
+  
+  ;
+ // spelesLauks.innerHTML+=`Tu ieguvi `+(punktiTotal)+` punktus, <br> <br> Pievieci ${spele.rezultats} vārdus (par katru saņenot 5 punktus), 
+  //    <br>Pieļaujot ${spele.nepareizi} kļūdas (par katru zaudēji 1 punktu)<br>
+ //  Atlikušais laiks:`+time+`(to pieskaitām )`;
 }
 
 function jaunsVards(){
     sunuLauks.style.display = "none";
     
     if(spelesVardi.length<=0){
+      beigtSkaititLaiku();
        spelesBeigas();
         
     }else{
