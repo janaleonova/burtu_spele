@@ -3,7 +3,8 @@
 <head>
   <link rel="stylesheet" href="../static/css/style.css">
   <link rel="stylesheet" href="../static/css/suna.css">
-  <!--<script src="js/timer.js"></script>
+  <!--NEIZDEVĀS PIEVIENOT JS FAILUS---
+  <script src="js/timer.js"></script>
   <script src="js/jaunsVards.js"></script>
   <script src="js/vardaParbaude.js"></script>
   <script src = "js/burtuJauksana.js"></script>-->
@@ -12,7 +13,7 @@
 
   <div class="header">
     <h1>Burtu spēle</h1>
-    <p>Lieliska spēle, lieliskiem panākumiem</p>
+    <p>Lieliska spēle - lieliskiem spēlētājiem!</p>
   </div>
   
   <div class="topnav">
@@ -26,23 +27,19 @@
   <div class="row">
     <div class="leftcolumn">
       <div class="card">
-        {% block content %}        
+{% block content %}       <!--aizvietojamais apgabals, lai nav jāpārraksta visas lapas kods katrā lapā--> 
         <a href="#" id="mylink1" onclick="saktSpeli();">
           <div class="sunuLauks">
-              <div class="container">
-              </div>
-          </div></a>
-          <div class="spelesLauks">
-            <div class="container2">
-              <!-- šūnas ielasa scripts -->
-            </div> 
+              <div class="container">  </div>
+          </div>
+        </a>
+        <div class="spelesLauks">
+          <div class="container2">
+            <!-- šūnas ielasa scripts -->
           </div> 
-
-{% endblock content %}
-            
-      </div>
-
-      
+        </div> 
+{% endblock content %}           
+      </div> 
     </div>
     <div class="rightcolumn">
       <div class="card">
@@ -58,7 +55,6 @@
             </td>
           </tr>
         </table>
-      
       </div>
       <div class="card">
         <h2>{{vards}},Tavi sasniegumi</h2>
@@ -78,8 +74,6 @@
   <div class="footer">
     <h2>Nāc rīt atkal spēlēt un uzvarēt... <div class=""></div></h2>
   </div>
-
-
 
 <script>
 
@@ -122,28 +116,28 @@ for (var s = 0; s < 22; s++) {
 const url ='https://docs.google.com/spreadsheets/d/';
 const ssid = '1ilaxRabk_2VQPtNBkh9qzPYhp5lDCV4mq7YQEmUz-io';
 const query1 =`/gviz/tq?`;
-const endpoint1 = `${url}${ssid}${query1}`;
+const googleVarduBaze = `${url}${ssid}${query1}`;
 
-fetch(endpoint1)
+fetch(googleVarduBaze)
 .then(res=>res.text())
 .then(data => {
     const temp = data.substring(47).slice(0,-2);
     const json = JSON.parse(temp);
     const rows = json.table.rows;
     rows.forEach((row) => {
-    const temp1 = (row.c);
-    const div = document.createElement('div');
-      temp1.forEach((cell)=>{
-          spelesVardi.push(cell.v);
+      const temp1 = (row.c);
+      const div = document.createElement('div');
+        temp1.forEach((cell)=>{
+            spelesVardi.push(cell.v);
       })    
     });
 }) //beidzas vārdu ielasīšana masīvā no google
 
 
 // spēles sākums un sākas laika skaitīšana, kad ielādējas spēle\\
-const startingMinutes = 0.3;
-let time = startingMinutes*60;
-const ele = document.getElementById("time");
+const startingMinutes = 0.3;  //ievada cik garš būs spēles laiks minūtēs
+let time = startingMinutes*60;  //spēles laiku pārvērš sekundēs
+const laikaLauks = document.getElementById("time");
 let interval = null;
 
 function saktSpeli(){
@@ -158,14 +152,12 @@ function saktLaikaAtskaiti(){
 
 function laikaAtskaite(){
     if (time <= 0) {
-          console.log(time);
           beigtSkaititLaiku();
-      }
-    console.log(time);
+    }
     time--;
     const minutes = Math.floor(time/60);
     const seconds =time % 60;
-    ele.innerHTML=minutes+":"+formatTime(seconds);
+    laikaLauks.innerHTML=minutes+":"+formatTime(seconds);
 }
 function beigtSkaititLaiku(){
   clearInterval(interval);
@@ -173,9 +165,9 @@ function beigtSkaititLaiku(){
         //countdown = duration;
         return spelesBeigas();
 }
- function formatTime(time){
+function formatTime(time){
     return time < 10 ? `0${time}` : time; 
-  }
+}
 
 
 
@@ -196,10 +188,9 @@ ievadamieBurti.addEventListener('keyup', (e)=>{
 //attēlo rezultātu pēc vārda pārbaudes
 function pievienotRezultatu(){
     let pagaiduIzvade = `Rezultāts: ${spele.rezultats}. Kļūdainie mēģinājumi ${spele.nepareizi}`;
-    let punktiBezLaika = ((spele.rezultats*5)+spele.nepareizi);
-   
-    console.log(punktiBezLaika+'punkti un laiks'+time);
     rezultatuTablo.innerHTML = pagaiduIzvade;
+    
+    let punktiBezLaika = ((spele.rezultats*5)+spele.nepareizi);
     document.getElementById('punkti').innerHTML = punktiBezLaika;
     
 }
@@ -247,19 +238,13 @@ function jaunaVardaIelasisana(){
   }
   
 function spelesBeigas(){
-  
   let punktiRezultatam=parseInt(document.getElementById('punkti').innerHTML);
   let punktiparLaiku=time;
   let punktiTotal=punktiRezultatam+punktiparLaiku;
   console.log('punkti rezultātam'+punktiRezultatam);
   console.log('punkti par laiku'+punktiparLaiku);
-  spelesLauks.innerHTML=`<h2>SPĒLES BEIGAS </h2><br><br> Tu ieguvi `+punktiTotal+`punktus. <br><hr><br>Pievieci ${spele.rezultats} vārdus (par katru saņenot 5 punktus), <br>Pieļaujot ${spele.nepareizi} kļūdas (par katru zaudēji 1 punktu)<br> Atlikušais laiks:`+time+`(to pieskaitām )`;
-  
-  ;
- // spelesLauks.innerHTML+=`Tu ieguvi `+(punktiTotal)+` punktus, <br> <br> Pievieci ${spele.rezultats} vārdus (par katru saņenot 5 punktus), 
-  //    <br>Pieļaujot ${spele.nepareizi} kļūdas (par katru zaudēji 1 punktu)<br>
- //  Atlikušais laiks:`+time+`(to pieskaitām )`;
-}
+  spelesLauks.innerHTML=`<h2>SPĒLES BEIGAS </h2><br><br> Tu ieguvi `+punktiTotal+` punktus. <br><hr><br>Pievieci ${spele.rezultats} vārdus (par katru saņenot 5 punktus), <br>Pieļaujot ${spele.nepareizi} kļūdas (par katru zaudēji 1 punktu)<br> Atlikušais laiks:`+time+`(to pieskaitām )`;
+ 
 
 function jaunsVards(){
     sunuLauks.style.display = "none";
@@ -288,22 +273,16 @@ function jaunsVards(){
 }
 
 
-  
-  
-
-
 function vardaParbaude(){
     ievadamieBurti.style.borderWidth='5px';
     let parbaudamie =ievadamieBurti.value.toLowerCase();
    
-    
     if(parbaudamie !== spele.izveletaisVards){
         ievadamieBurti.style.borderColor = 'red';
         ievadamieBurti.value = '';
         ievadamieBurti.focus();
         spele.nepareizi++;
 
-       
     }else{
         ievadamieBurti.disabled = true;
         ievadamieBurti.style.borderColor='green';
@@ -311,7 +290,7 @@ function vardaParbaude(){
         btn.style.display='block';
         btn.textContent = 'Nākamais vārds';
         spele.rezultats++;
-       // btn.focus();
+       btn.focus();
     }
     pievienotRezultatu();
     
