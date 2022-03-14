@@ -16,6 +16,7 @@
         if (--countdown < 0) {
             //countdown = duration;
             spelesLauks.innerHTML="<div>Spēles beigas</div>"
+            
         }
     }, 1000);
 }

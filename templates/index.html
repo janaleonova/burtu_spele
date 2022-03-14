@@ -3,10 +3,10 @@
 <head>
   <link rel="stylesheet" href="../static/css/style.css">
   <link rel="stylesheet" href="../static/css/suna.css">
-  <script src="js/timer.js"></script>
+  <!--<script src="js/timer.js"></script>
   <script src="js/jaunsVards.js"></script>
   <script src="js/vardaParbaude.js"></script>
-  <script src = "js/burtuJauksana.js"></script>
+  <script src = "js/burtuJauksana.js"></script>-->
 </head>
 <body>
 
@@ -17,7 +17,7 @@
   
   <div class="topnav">
       <a href="{{ url_for('login')}}"><img class="img_bite_sm" src="../static/img/bite1.gif">sākums</a>
-      <a href="#" id="mylink2" onclick="saktSkaitit()"><img class="img_bite_sm" src="../static/img/bite1.gif">sākt spēli</a>
+      <a href="#" id="mylink2" onclick="saktSpeli()"><img class="img_bite_sm" src="../static/img/bite1.gif">sākt spēli</a>
       <a href="{{ url_for('top')}}"><img class="img_bite_sm" src="../static/img/bite2.gif">rezultātu tops</a>
       <a href="help.html"><img class="img_bite_sm" src="../static/img/bite3.gif">pamācība</a>
       <a href="{{ url_for('login')}}"><img class="img_bite_sm" src="../static/img/bite4.gif">reģistrēties</a>
@@ -27,7 +27,7 @@
     <div class="leftcolumn">
       <div class="card">
         {% block content %}        
-        <a href="#" id="mylink1" onclick="saktSkaitit();">
+        <a href="#" id="mylink1" onclick="saktSpeli();">
           <div class="sunuLauks">
               <div class="container">
               </div>
@@ -52,16 +52,13 @@
             <td><h2>Punkti</h2></td>
           </tr>
           <tr>
-            <td> <span id="time">02:00</span> </td>
+            <td> <span id="time">01:00</span> </td>
             <td>
               <span id="punkti"></span>
             </td>
           </tr>
         </table>
-
-
-
-        
+      
       </div>
       <div class="card">
         <h2>{{vards}},Tavi sasniegumi</h2>
@@ -110,7 +107,7 @@ ievadamieBurti.style.display = 'none';
 btn.style.display = 'none';  
 
 
-//ielādē bišu šūnas pašā lapas ielādē.
+//ielādē bišu šūnas pie lapas ielādes
 window.onload = spelesLaukums();
 
 function spelesLaukums(){
@@ -143,20 +140,39 @@ fetch(endpoint1)
 }) //beidzas vārdu ielasīšana masīvā no google
 
 
-// spēles sākums un sākas laika skaitīšana, kad ielādējas spēle
-function saktSkaitit() {
-   
-  
+// spēles sākums un sākas laika skaitīšana, kad ielādējas spēle\\
+const startingMinutes = 0.2;
+let time = startingMinutes*60;
+const ele = document.getElementById("time");
+let interval = null;
 
-    var minutesOfFive = 60 * 2,
-        view_date = document.querySelector('#time');
-    startTimer(minutesOfFive, view_date);
-    sunuAizversana();
-};
+function saktSpeli(){
+  jaunaVardaIelasisana();
+  laikaAtskaite();
+  interval = setInterval(laikaAtskaite,1000);
+}
+
+function laikaAtskaite(){
+  if (time < 0) {
+        //countdown = duration;
+        spelesBeigas();
+    }
+  time--;
+  const minutes = Math.floor(time/60);
+  const seconds =time % 60;
+  ele.innerHTML=minutes+":"+formatTime(seconds);
+      
+  
+}
+ function formatTime(time){
+    return time < 10 ? `0${time}` : time; 
+  }
+
+
 
 //nākamā vārda ielāde un citu šūnu aizvēršana
 btn.addEventListener('click',(e)=>{
-  sunuAizversana(); 
+  jaunaVardaIelasisana(); 
   });
 
 //spēlētāju ievadīto burtu nolasīšana un sūtīšana uz pārbaudi
@@ -210,7 +226,7 @@ function burtuJauksana(orginalvards){
     return jauktsVards; 
 }
 
-function sunuAizversana(){
+function jaunaVardaIelasisana(){
     x=atveramieBurti;  //parbauda, cik ir atvertas sūniņas
     for (var y = 0; y < x; y++) {
       document.getElementById("burts"+y).remove();
@@ -219,12 +235,19 @@ function sunuAizversana(){
     jaunsVards();
   }
   
+function spelesBeigas(){
+      let stop = true;
+      laikaAtskaite(stop);
+      spelesLauks.innerHTML="<div>Spēles beigas</div>"
+      spelesLauks.innerHTML+=`Tu ieguvi `+document.getElementById('punkti').innerHTML+` punktus, pieļaujot ${spele.nepareizi} kļūdas!`;
+}
+
 function jaunsVards(){
     sunuLauks.style.display = "none";
     
     if(spelesVardi.length<=0){
-        spelesLauks.innerHTML="<div>Spēles beigas</div>"
-        spelesLauks.innerHTML+=`Tu ieguvi ${spele.rezultats}, kļūdījies ${spele.nepareizi}!`;
+       spelesBeigas();
+        
     }else{
         ievadamieBurti.disabled = false;
         ievadamieBurti.value='';
@@ -247,24 +270,7 @@ function jaunsVards(){
 
   
   
-function startTimer(duration, view_date) {
 
-var countdown = duration, minutes, seconds;
-setInterval(function () {
-    minutes = parseInt(countdown / 60, 10);
-    seconds = parseInt(countdown % 60, 10);
-
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-
-    view_date.textContent = minutes + ":" + seconds;
-
-    if (--countdown < 0) {
-        //countdown = duration;
-        spelesLauks.innerHTML="<div>Spēles beigas</div>"
-    }
-}, 1000);
-}
 
 function vardaParbaude(){
     ievadamieBurti.style.borderWidth='5px';
@@ -290,7 +296,64 @@ function vardaParbaude(){
     pievienotRezultatu();
     
 }
+  /*function laikaAtskaite(){
+    const minutes = Math.floor(time/60);
+    const seconds =time % 60;
+   //seconds = seconds < 10 ? '0'+seconds :seconds;
+    coutndouwnElement.innerHTML=minutes+":"+formatTime(seconds);
+    time--;
+    if (time <= 0) {
+          //countdown = duration;
+         spelesBeigas();
+    }    
+  }
+  function formatTime(time){
+    return time < 10 ? `0${time}` : time; 
+  }
+
+
+/*function saktSpeli() {
+    var minutesOfFive = 60 * 1,
+        view_date = document.querySelector('#time');
+    startTimer(minutesOfFive, view_date);
+    jaunaVardaIelasisana();
+};
+
+function startTimer(duration, view_date) {
+
+  var countdown = duration, minutes, seconds;
+  setInterval(function () {
+      minutes = parseInt(countdown / 60, 10);
+      seconds = parseInt(countdown % 60, 10);
+
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      view_date.textContent = minutes + ":" + seconds;
+
+      if (--countdown < 0) {
+          //countdown = duration;
+         spelesBeigas();
+      }
+  }, 1000);
+}
+function laikaAtskaite(){
+    interval = setInterval(()=>{
+      const minutes = Math.floor(time/60);
+      const seconds =time % 60;
+      ele.innerHTML=minutes+":"+formatTime(seconds);
+      time--;
+
+      if (time < 0) {
+          //countdown = duration;
+         spelesBeigas();
+      } 
   
+    }, 1000) 
+ }
+ function formatTime(time){
+    return time < 10 ? `0${time}` : time; 
+  }*/
 
 
   </script>
