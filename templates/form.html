@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+{% block title %}{%endblock%}
+
+{% block content %}
+<div>{{title}}</div>
+  <div>
+      <h1>Paldies, {{vards}}</h1>
+      <p>visi {{speletaji}}</p>
+
+    <ul>
+        {% for speletajs in speletaji%}
+        <li>{{speletajs}}</li>
+        {%endfor%}
+    </ul>
+   
+      
+
+  </div>
+{% endblock content %}

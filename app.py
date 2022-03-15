@@ -4,6 +4,7 @@ import json
 
 app = Flask(__name__)
 
+speletaji = []
 @app.route("/sarauj", methods=['GET','POST'])
 def index():
     vards = request.args.get('vards')
@@ -27,7 +28,18 @@ def top():
         
         
     return render_template('/top.html', top=top)
-    
+
+
+@app.route('/form', methods=["POST"])
+def form():
+    vards = request.form.get('vards')
+    speletaji.append(f"{vards}")
+    title="Thank You!"
+    return render_template("form.html", title=title, vards=vards, speletaji=speletaji)
+
+
+
+[speletaji]
 
 if __name__ == "__main__":
     app.run(debug = True)
