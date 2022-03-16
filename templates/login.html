@@ -6,9 +6,17 @@
 {% block content %}
 <h1>Dalībnieku reģistēšanās</h1>
 <p>Aizpildi sekojošo informāciju</p>
+<<<<<<< Updated upstream
 <form action="/form" method="POST"> 
     
     <input type="text" name="vards" placeholder="Ievadi vārdu">
+=======
+<form action="{{ url_for('index')}}"> 
+    <label for="vards">Vārds:</label>
+    <input type="text" name="vards">
+
+
+>>>>>>> Stashed changes
 
     <input type="submit" value="Apstiprināt">
 </form>

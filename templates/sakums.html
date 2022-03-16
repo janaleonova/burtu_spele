@@ -99,12 +99,11 @@ ievadamieBurti.classList.add('tekstaIevade');
 btn.textContent = "SĀKT SPĒLI!";
 const spelesVardi = ["kaķis"];
 const spele ={izveletaisVards:'', sajauktsVards:'',rezultats:0, nepareizi:0, atlikusieVardi:0, izspeles:spelesVardi.length};
-
 spelesLauks.append(ievadamieBurti);
 spelesLauks.append(btn);
 
 rezultatuTablo.style.display="none";
-ievadamieBurti.style.display = 'none';
+ievadamieBurti.style.display = "none";
 btn.style.display = 'none';  
 
 
@@ -142,8 +141,13 @@ fetch(endpoint1)
 
 
 // spēles sākums un sākas laika skaitīšana, kad ielādējas spēle\\
+<<<<<<< Updated upstream:templates/sakums.html
 const startingMinutes = 0.3;
 let time = startingMinutes*60;
+=======
+const startingMinutes = 0.3;  //ievada cik garš būs spēles laiks minūtēs
+let time = startingMinutes*60;  //spēles laiku pārvērš sekundēs
+>>>>>>> Stashed changes:templates/index.html
 const ele = document.getElementById("time");
 let interval = null;
 
@@ -177,8 +181,11 @@ function beigtSkaititLaiku(){
  function formatTime(time){
     return time < 10 ? `0${time}` : time; 
   }
+<<<<<<< Updated upstream:templates/sakums.html
 
 
+=======
+>>>>>>> Stashed changes:templates/index.html
 
 //nākamā vārda ielāde un citu šūnu aizvēršana
 btn.addEventListener('click',(e)=>{
@@ -254,7 +261,11 @@ function spelesBeigas(){
   let punktiTotal=punktiRezultatam+punktiparLaiku;
   console.log('punkti rezultātam'+punktiRezultatam);
   console.log('punkti par laiku'+punktiparLaiku);
+<<<<<<< Updated upstream:templates/sakums.html
   spelesLauks.innerHTML=`<h2>SPĒLES BEIGAS </h2><br><br> Tu ieguvi `+punktiTotal+`punktus. <br><hr><br>Pievieci ${spele.rezultats} vārdus (par katru saņenot 5 punktus), <br>Pieļaujot ${spele.nepareizi} kļūdas (par katru zaudēji 1 punktu)<br> Atlikušais laiks:`+time+`(to pieskaitām )`;
+=======
+  spelesLauks.innerHTML=`<h2>SPĒLES BEIGAS </h2><br><br> Tu ieguvi `+punktiTotal+` punktus. <br><hr><br>Pievieci ${spele.rezultats} vārdus (par katru saņenot 5 punktus), <br>Pieļaujot ${spele.nepareizi} kļūdas (par katru zaudēji 1 punktu)<br> Atlikušais laiks:`+time+`(to pieskaitām )`;
+>>>>>>> Stashed changes:templates/index.html
   
   ;
  // spelesLauks.innerHTML+=`Tu ieguvi `+(punktiTotal)+` punktus, <br> <br> Pievieci ${spele.rezultats} vārdus (par katru saņenot 5 punktus), 
@@ -289,6 +300,7 @@ function jaunsVards(){
 }
 
 
+<<<<<<< Updated upstream:templates/sakums.html
   
   
 
@@ -313,6 +325,24 @@ function vardaParbaude(){
         btn.textContent = 'Nākamais vārds';
         spele.rezultats++;
        // btn.focus();
+=======
+
+function vardaParbaude(){
+    ievadamieBurti.style.borderWidth='5px';
+    let parbaudamie =ievadamieBurti.value.toLowerCase();  
+    
+    if(parbaudamie == spele.izveletaisVards){
+      ievadamieBurti.disabled = true;
+      ievadamieBurti.style.borderColor='green';
+      btn.style.display='block';
+      btn.textContent = 'Nākamais vārds';
+      spele.rezultats++;
+    }else{
+      ievadamieBurti.style.borderColor = 'red';
+      ievadamieBurti.value = '';
+      ievadamieBurti.focus();
+      spele.nepareizi++; 
+>>>>>>> Stashed changes:templates/index.html
     }
     pievienotRezultatu();
     
