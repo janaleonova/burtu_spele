@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,10 +17,10 @@
   </div>
   
   <div class="topnav">
-      <a href="{{ url_for('login')}}"><img class="img_bite_sm" src="../static/img/bite1.gif">sākums</a>
+      <a href="{{ url_for('sakums')}}"><img class="img_bite_sm" src="../static/img/bite1.gif">sākums</a>
       <a href="#" id="mylink2" onclick="saktSpeli()"><img class="img_bite_sm" src="../static/img/bite1.gif">sākt spēli</a>
       <a href="{{ url_for('top')}}"><img class="img_bite_sm" src="../static/img/bite2.gif">rezultātu tops</a>
-      <a href="help.html"><img class="img_bite_sm" src="../static/img/bite3.gif">pamācība</a>
+      <a href="{{ url_for('help')}}"><img class="img_bite_sm" src="../static/img/bite4.gif">reģistrēties</a>
       <a href="{{ url_for('login')}}"><img class="img_bite_sm" src="../static/img/bite4.gif">reģistrēties</a>
   </div>
  
@@ -39,45 +40,45 @@
           </div> 
 
 {% endblock content %}
-            
-      </div>
+</div>
 
       
-    </div>
-    <div class="rightcolumn">
-      <div class="card">
-        <table class="tablo">
-          <tr> 
-            <td><h2>Laiks</h2></td>
-            <td><h2>Punkti</h2></td>
-          </tr>
-          <tr>
-            <td> <span id="time"></span> </td>
-            <td>
-              <span id="punkti"></span>
-            </td>
-          </tr>
-        </table>
-      
-      </div>
-      <div class="card">
-        <h2>{{vards}},Tavi sasniegumi</h2>
-        <div class="score"></div>
+</div>
+<div class="rightcolumn">
+  <div class="card">
+    <table class="tablo">
+      <tr> 
+        <td><h2>Laiks</h2></td>
+        <td><h2>Punkti</h2></td>
+      </tr>
+      <tr>
+        <td> <span id="time"></span> </td>
+        <td>
+          <span id="punkti"></span>
+        </td>
+      </tr>
+    </table>
+  
+  </div>
+  <div class="card">
+    <h2>{{speletaji}},Tavi sasniegumi</h2>
+    <div class="score"></div>
 
-      </div>
-      <div class="card">
-        <h3>Rezutatīvākie spēlētāji</h3>
-        <div><p>Uzvarētājs 1</p></div>
-        <div><p>Uzvarētājs 2</p></div>
-        <div><p>Uzvarētājs 3</p></div>
-      </div>
-      
-    </div>
+  </div>
+  <div class="card">
+    <h3>Rezutatīvākie spēlētāji</h3>
+    <div><p>Uzvarētājs 1</p></div>
+    <div><p>Uzvarētājs 2</p></div>
+    <div><p>Uzvarētājs 3</p></div>
   </div>
   
-  <div class="footer">
-    <h2>Nāc rīt atkal spēlēt un uzvarēt... <div class=""></div></h2>
-  </div>
+</div>
+</div>
+
+<div class="footer">
+<h2>Nāc rīt atkal spēlēt un uzvarēt... <div class=""></div></h2>
+</div>         
+     
 
 
 
