@@ -45,6 +45,8 @@
   }
   .img_bite_sm{
    height: 5rem;
+   vertical-align: sub;
+
   }
   /* Create two unequal columns that floats next to each other */
   /* Left column */
@@ -91,20 +93,18 @@
   /* Add a card effect for articles */
   .card {
     background-color: white;
-    padding: 20px;
-    margin-top: 20px;
+    padding: 1rem 2rem 1rem 1rem;
+    height: 440px;
   }
  .leftcolumn .card{
    
     width: 45rem;
     margin:auto;
     border-radius: 2rem;
-    height: 25rem;
+    height: 440px
      
  }
-  .row{
-    background: linear-gradient(to bottom, rgb(107, 217, 245) , rgb(246, 246, 248) , rgb(179, 246, 124) ) no-repeat;
-  }
+ 
   /* Clear floats after the columns */
   .row:after {
     content: "";

@@ -1,27 +1,6 @@
-{% extends 'layout.html' %}
-  {{title}}
- 
-  
-{% block content %}
-  
-       
-    <a href="#" id="mylink1" onclick="saktSpeli();"> 
-         <div class="sunuLauks">
-            <div class="S_container">
-            </div>
-        </div></a>
-        <div class="spelesLauks">
-          <div class="container2">
-            <!-- šūnas ielasa scripts -->
-        </div>    
-      </div>
 
-  
-{% endblock content %}
-
-{% block skritps %}
-<script>
-  //sagatavo mainīgos un konstantes
+    
+//sagatavo mainīgos un konstantes
 const spelesLauks = document.querySelector('.spelesLauks');
 const sunuLauks = document.querySelector('.sunuLauks');
 const suna = document.querySelector('.suna');
@@ -41,8 +20,7 @@ spelesLauks.append(btn);
 
 rezultatuTablo.style.display="none";
 ievadamieBurti.style.display = "none";
-btn.style.display = 'none'; 
-spelesLaukums.display = 'none'; 
+btn.style.display = 'none';  
 
 
 //ielādē bišu šūnas pie lapas ielādes
@@ -246,7 +224,4 @@ function vardaParbaude(){
   pievienotRezultatu();
   
 }
-</script>
 
-{%endblock skritps%}
- 

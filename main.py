@@ -8,7 +8,7 @@ speletaji = []
 
 @app.route("/",  methods=["GET", "POST"])
 def login():
-    return render_template('/login.html')
+    return render_template('/login.html', title="login")
 
 
 @app.route('/form', methods=["POST"])
@@ -22,12 +22,20 @@ def form():
 
 @app.route("/sakums",  methods=["GET", "POST"])
 def sakums():
-    return render_template('/sakums.html', speletaji=speletaji)
+ 
+    return render_template('/sakums.html', speletaji=speletaji, title="sākums")
 
 @app.route("/help",  methods=["GET", "POST"])
 def help():
     return render_template('/sakums.html' )
 
+@app.route("/layout",  methods=["GET", "POST"])
+def layout():
+    return render_template('/layout.html', title="layout")
+
+@app.route("/spele",  methods=["GET", "POST"])
+def lspele():
+    return render_template('/spele.html', title="layout")
 
 @app.route("/top",  methods=["GET", "POST"])
 def top():

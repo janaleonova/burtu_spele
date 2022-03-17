@@ -21,7 +21,7 @@
        --f: calc(2*var(--s)*var(--r) + 4*var(--mv)  - 2*var(--vc) - 2px);
      }
      
-     .container {
+     .S_container {
        grid-column: 1/-1;
        margin:0 auto;
        font-size: 0; /*disable white space between inline block element */
@@ -32,7 +32,7 @@
        
      }
      
-     .container .suna {
+     .S_container .suna {
        width: var(--s);
        margin: var(--mv) var(--mh);
        height: calc(var(--s)*var(--r)); 
@@ -43,7 +43,7 @@
        
      }
         
-     .container::before{
+     .S_container::before{
        
        content: "";
        width: calc(var(--s)/2 + var(--mh));
@@ -55,7 +55,7 @@
      }
      
      
-     .container .suna::before {
+     .S_container .suna::before {
        padding-top:6.5rem;
        content:"Burtu \A spēle";
        text-transform:uppercase;
@@ -70,7 +70,7 @@
        inset:0;
      }
      
-     .container .suna{
+     .S_container .suna{
        animation: show 20s;
        animation-iteration-count: 1;
       }
