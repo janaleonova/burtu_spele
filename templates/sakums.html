@@ -192,7 +192,8 @@ let punktiTotal=punktiRezultatam+punktiparLaiku;
 console.log('punkti rezultātam'+punktiRezultatam);
 console.log('punkti par laiku'+punktiparLaiku);
 spelesLauks.innerHTML=`<h2>SPĒLES BEIGAS </h2><br><br> Tu ieguvi `+punktiTotal+`punktus. <br><hr><br>Pievieci ${spele.rezultats} vārdus (par katru saņenot 5 punktus), <br>Pieļaujot ${spele.nepareizi} kļūdas (par katru zaudēji 1 punktu)<br> Atlikušais laiks:`+time+`(to pieskaitām )`;
-
+let rezultats=spele.rezultats;
+fetch('/rezultati/'+spele.rezultats+'/'+time)
 }
 
 function jaunsVards(){
