@@ -51,20 +51,25 @@
       <div class="col-sm-8">
         <div class="card">
         {% block content %} 
-
+        <div>
+          <h1>Sveiki, {{vards}}</h1>
+       
+          <a href="{{ url_for('sakums')}}"><img class="img_bite_sm" src="../static/img/bite1.gif">SĀKT SPĒLI</a>
+       
+      </div>
         {% endblock content %}
       </div>
       </div>
      
       <div class="col-sm-4">
-        <h2>Tavi sasniegumi</h2>
+        <h2>{{vards}},Tavi sasniegumi</h2>
         <h5>Punkti:</h5>
         <span id="punkti"></span>
         <p>Esi ieguvis __ punktus</p>
         <h5>Laiks:</h5>
         <span id="time"></span>
         <p>Esi ieguvis __ punktus</p>
-        <h2>{{speletaji}},Tavi sasniegumi</h2>
+        <h2>{{vards}},Tavi sasniegumi</h2>
         <div class="score"></div>
 
         

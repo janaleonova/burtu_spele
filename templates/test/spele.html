@@ -2,175 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="style.css" rel="stylesheet">
-    <link href="style2.css" rel="stylesheet">
-    <title>Burtu spēle</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/suna.css">
+  <script src="../static/app.js"></script>
+  
 </head>
-
-
 <body>
-    <div class="wraper">
-        <header>
-            <nav>
-                <div class="izvelne"><a href="index.html"><img class="img_bite_sm" src="img/bite1.gif">sākums</a></div>
-                <div class="izvelne"><a href="spele.html"><img class="img_bite_sm" src="img/bite1.gif">sākt spēli</a></div>
-                <div class="izvelne"><a href="top.html"><img class="img_bite_sm" src="img/bite2.gif">rezultātu tops</a></div>
-                <div class="izvelne"><a href="help.html"><img class="img_bite_sm" src="img/bite3.gif">pamācība</a></div>
-                <div class="izvelne"><a href="login.html"><img class="img_bite_sm" src="img/bite4.gif">reģistrēties</a></div>
-            </nav>
-        </header>
-       
-               
-       <div>         
-            <div class="spelesLauks">
-                
-       
-                
-            </div>            
-        </div>
+    <div class="container mt-5">
         
-        <footer>
-            <img class="foot_img" src="img/grass.png">
-        </footer>
+            <button onclick="spelesLaukums();">ddd</button>      
+            <a href="#" id="mylink1" onclick="saktSpeli();">
+                <div class="sunuLauks">
+                    <div class="S_container"></div>
+                </div></a>
+                <div class="spelesLauks">
+                    <div class="container2">
+                    <!-- šūnas ielasa scripts -->
+                    </div>    
+                </div>
+        <div class="card">
+            <h2>{{vards}},Tavi sasniegumi</h2>
+        <div class="score"></div>
 
-    </div><!--beidzas wrapper-->
-
-    <script>
-    const spelesLauks = document.querySelector('.spelesLauks');
-    const suna = document.querySelector('.suna');
-    const btn = document.createElement('button');
-    const redzamieBurti = document.createElement('div');
-    const ievadamieBurti = document.createElement('input');
-    const rezultatuTablo = document.createElement('div');
-
-    rezultatuTablo.style.color= 'white';
-    rezultatuTablo.style.backgroundColor = 'black';
-    rezultatuTablo.style.padding = '25px';
-
-    ievadamieBurti.setAttribute('type','text');
-    ievadamieBurti.classList.add('teksta_ievade');
-    redzamieBurti.style.textAlign = 'center';
-    btn.textContent = "SĀKT SPĒLI!";
-    redzamieBurti.textContent = "Lai sāktu spēli, spied 'SĀKT SPĒLI' ";
-    redzamieBurti.style.letterSpacing = '0';
+    <table class="tablo">
+        <tr> 
+          <td><h2>Laiks</h2></td>
+          <td><h2>Punkti</h2></td>
+        </tr>
+        <tr>
+          <td> <span id="time"></span> </td>
+          <td>
+            <span id="punkti"></span>
+          </td>
+        </tr>
+      </table>
     
-    /// pievienojam laukus HTML lapai
-    spelesLauks.append(redzamieBurti);
-    spelesLauks.append(ievadamieBurti);
-    spelesLauks.prepend(rezultatuTablo);
-    spelesLauks.append(btn);
-
-    const spelesVardi = ['zaķis', 'kaķis', 'pīle'];
-    const spele ={izveletaisVards:'', sajauktsVards:'',rezultats:0, nepareizi:0, atlikusieVardi:0, izspeles:spelesVardi.length};
-    
-    rezultatuTablo.style.display="none";
-    ievadamieBurti.style.display = 'none';
-    btn.style.display = 'block';    
-
-    btn.addEventListener('click',(e)=>{
-        console.log(e);
-        console.log(spelesVardi);
-       
-        if(spelesVardi.length<=0){
-            console.log ('spēles beigas')
-            spelesLauks.innerHTML="<div>Spēles beigas</div>"
-            spelesLauks.innerHTML+=`Tu ieguvi ${spele.rezultats}, kļūdījies ${spele.nepareizi}!`;
-        }else{
-
-        
-        ievadamieBurti.disabled = false;
-        ievadamieBurti.value='';
-        ievadamieBurti.style.borderWidth='1px';
-        ievadamieBurti.style.borderColor="#eee";
-        rezultatuTablo.style.display="block";
-        ievadamieBurti.style.display = 'inline';
-        btn.style.display = 'none';
-        ievadamieBurti.focus();
-        
-
-        spelesVardi.sort(()=>{return 0.5 - Math.random()});
-        spele.izveletaisVards= spelesVardi.shift();
-        console.log(spelesVardi);
-        spele.atlikusieVardi = spelesVardi.length;
-        spele.sajauktsVards = burtuJauksana(spele.izveletaisVards);
-       
-        pievienotRezultatu();
-        redzamieBurti.style.fontSize='3em';
-        redzamieBurti.style.letterSpacing= '0,5em';
-        ievadamieBurti.setAttribute('maxlength', spele.izveletaisVards.length);
-        redzamieBurti.textContent = `${spele.sajauktsVards}`;
-        spele.atlikusieVardi=spelesVardi.length;
-        console.log(spele);
-        }
-       
-    })
-
-    ievadamieBurti.addEventListener('keyup', (e)=>{
-        //console.log(e)
-        ievadamieBurti.style.borderColor = '#eee';
-        ievadamieBurti.style.borderWidth = '1px';
-        if (ievadamieBurti.value.length == spele.izveletaisVards.length || e.code == 'Enter'){
-            vardaParbaude();
-        }
-    })
-    function pievienotRezultatu(){
-        let pagaiduIzvade = `Rezultāts: ${spele.rezultats}. Kļūdainie mēģinājumi ${spele.nepareizi}`;
-        rezultatuTablo.innerHTML = pagaiduIzvade;
-    }
-
-
-
-    function vardaParbaude(){
-        ievadamieBurti.style.borderWidth='5px';
-        if(ievadamieBurti.value == spele.izveletaisVards){
-            ievadamieBurti.style.borderColor='green';
-            console.log('sakrīt');
-            spele.rezultats++;
-            ievadamieBurti.disabled = true;
-            btn.style.display='block';
-            btn.textContent = 'Nākamais vārds';
-           btn.focus();
-        }else{
-            ievadamieBurti.style.borderColor = 'red';
-            console.log('nesakrīt');
-            ievadamieBurti.value = '';
-            ievadamieBurti.focus();
-            spele.nepareizi++;
-        }
-        pievienotRezultatu();
-    }
-
-
-
-    function burtuJauksana(orginalvards){
-        let jauktsVards = orginalvards.split('');
-        jauktsVards.sort(()=>{return 0.5 - Math.random()});  
-        jauktsVards=jauktsVards.join('');
-        console.log(jauktsVards+ ' sauajktais')
-        if (orginalvards == jauktsVards){
-            console.log('sakrīt');
-            return burtuJauksana(orginalvards)
-        }
-        
-        console.log('jauktenis'+jauktsVards);
-        var b = jauktsVards; 
-        var izmestieBurti=[]; 
-                    for (var z = 0; z < b.length; z++) {
-                        izmestieBurti.push(b.charAt(z))  
-                        const burts = document.createElement('div');
-                        spelesLauks.append(burts);
-
-                        burts.classList.add('burta_lauks');
-
-                        burts.textContent=(b.charAt(z));
-                        console.log (b.charAt(z));
-                    }
-                    return jauktsVards; 
-    }
-
-
-    </script>
-
 
 </body>
 </html>
