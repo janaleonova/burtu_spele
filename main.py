@@ -49,12 +49,12 @@ def spelesRezultats(punktiTotal, rezultats, time):
         "atlikušais laiks": time
     }
    
-    with open('dati/chats.json', 'r', encoding="utf-8") as r:
+    with open('dati/rezultati.json', 'r', encoding="utf-8") as r:
         vecie = r.read()
         rindas = json.loads(vecie)
   
         rindas.append(rinda)
-    with open('dati/chats.json', 'w', encoding="utf-8") as f:
+    with open('dati/rezultati.json', 'w', encoding="utf-8") as f:
         f.write(json.dumps(rindas, indent=2, ensure_ascii=False))
     
     return "OK"

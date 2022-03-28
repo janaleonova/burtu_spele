@@ -54,7 +54,14 @@
 
   <div class="container mt-5">
     <div class="row">
+      <div class="d-flex flex-row justify-content-around">
+        <div class="p-2"><h2>{{vards}}</h2></div>
+        <div class="p-2"><h2>Laiks: <span id="time">0:18</span></h2></div>
+        <div class="p-2"><h2>Punkti:<span id="punkti">___ </span></h2></div>
+        
+      </div>
 
+   
       <div class="col-sm-8" >
         <div class="card">
           {% block content %} 
@@ -72,14 +79,12 @@
 
       <div class="col-sm-4">
         <div class="card tekstaLaukiKartites">
-          <h2>Laiks: <span id="time">0:18</span></h2>
+         
                   
           
             <h2>{{vards}},Tavi sasniegumi spēlē</h2>
             <br>
-            <h3>Punkti:</h3>
             
-            <p> Tev ir: <span id="punkti">___ </span> punkti</p>
             
            
             <div class="score"></div>

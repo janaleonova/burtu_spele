@@ -185,7 +185,16 @@ function jaunaVardaIelasisana(){
 }
 
 function spelesBeigas(){
+  const btn2 = document.createElement('button');
+  spelesLauks.append(btn2);
+  btn2.style.display='block';
+  btn2.textContent = 'Tālāk';
+  btn2.addEventListener('click',(e)=>{
+    paraditRezultatu(); 
+  });
+}
 
+function paraditRezultatu(){
 let punktiRezultatam=parseInt(document.getElementById('punkti').innerHTML);
 let punktiparLaiku=time;
 let punktiTotal=punktiRezultatam+punktiparLaiku;
@@ -235,8 +244,7 @@ function vardaParbaude(){
       ievadamieBurti.value = '';
       ievadamieBurti.focus();
       spele.nepareizi++;
-
-     
+  
   }else{
       ievadamieBurti.disabled = true;
       ievadamieBurti.style.borderColor='green';
