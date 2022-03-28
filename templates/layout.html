@@ -59,9 +59,10 @@
         <div class="card">
           {% block content %} 
           <div>
-            <h1>Sveiki, {{vards}}</h1>
+            <h2>Sveiki, {{vards}}!</h2>
+            <p> Sāksims šo lielisko spēli! </p>
          
-            <a href="{{ url_for('sakums')}}"><img class="img_bite_sm" src="../static/img/bite1.gif">SĀKT SPĒLI</a>
+            <a href="{{ url_for('sakums')}}"><img class="img_bite_sm" src="../static/img/bite1.gif">AIZIET</a>
          
           </div>
           {% endblock content %}
@@ -78,7 +79,6 @@
             <h5>Laiks:</h5>
             <span id="time"></span>
             <p>Esi ieguvis __ punktus</p>
-            <h2>{{vards}},Tavi sasniegumi</h2>
             <div class="score"></div>
     
 
