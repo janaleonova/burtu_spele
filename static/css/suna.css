@@ -92,6 +92,7 @@
 
 /*parādošie burtiņi */
 .spelesLauks {
+  margin: 2rem;
   padding-top: 5rem;
   display: grid;
   grid-template-columns: repeat(auto-fit,calc
