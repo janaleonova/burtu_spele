@@ -1,20 +1,30 @@
 [
   {
-    "vārds": "\"gundega\"",
-    "kopejie punkti": "25",
-    "atminētie vārdi ": "3",
-    "atlikušais laiks": "10"
+    "spēlētāja vārds": "guntis",
+    "kopējie punkti": "14",
+    "atlikušais laiks": "5",
+    "vārdu skaits": "3",
+    "kļūdu skaits": "0"
   },
   {
-    "vārds": "\"gundega\"",
-    "kopejie punkti": "25",
-    "atminētie vārdi ": "3",
-    "atlikušais laiks": "10"
+    "spēlētāja vārds": "Māris",
+    "kopējie punkti": "15",
+    "atlikušais laiks": "6",
+    "vārdu skaits": "3",
+    "kļūdu skaits": "0"
   },
   {
-    "vārds": "\"habs\"",
-    "kopejie punkti": "24",
-    "atminētie vārdi ": "3",
-    "atlikušais laiks": "8"
+    "spēlētāja vārds": "Guna",
+    "kopējie punkti": "15",
+    "atlikušais laiks": "6",
+    "vārdu skaits": "3",
+    "kļūdu skaits": "0"
+  },
+  {
+    "spēlētāja vārds": "Maijiņa",
+    "kopējie punkti": "10",
+    "atlikušais laiks": "3",
+    "vārdu skaits": "3",
+    "kļūdu skaits": "2"
   }
 ]

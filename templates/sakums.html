@@ -209,7 +209,10 @@ function burtuJauksana(vardsNoMasiva){
     punkti=spele.rezultats*3-spele.kluda+time;
     spelesLauks.innerHTML=
     "<h2>Spēles beigas</h2><br><br>Tev izdevās atminēt :"+spele.rezultats+"! <br><br> Par katru atminēto vārdu tu saņem 5 punktus, par kļūdu tu zaudē vienu punktu un visas atlikušās sekundes pieskaitam pie punktiem. Līdz ar to Tavs rezultāts ir "+punkti;
-
+    let vards=document.getElementById('vards').innerHTML;
+    let rez=spele.rezultats;
+    let kludas=spele.kluda;
+    fetch('sutitUzServeri/'+vards+'/'+punkti+'/'+time+'/'+rez+'/'+kludas);
   }
 </script>
 

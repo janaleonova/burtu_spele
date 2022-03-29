@@ -4,10 +4,31 @@
 {% block content %}
 
 {{speletajs}}
+<div class="top"></div>
 
 
+<script>
+    let zinas = document.querySelector('.top');
+async function ieladetChataZinasJson()
+{
+    let rezultati = await fetch('/lasit');
+    let dati = await rezultati.json();
+    
+    //console.log(await dati[0]['zina'] )
+    zinas.innerHTML = '';
+    
+    i = 0;
+    while ( i < await dati.length )
+    {
+        //console.log(i);
+        zinas.innerHTML = zinas.innerHTML+dati[i]['spēlētāja vārds']+dati[i]['kopējie punkti']+':<br />';
 
+        i = i+1;
+    }
 
-
+    
+}//beidzas ieladetChataZinasJson()
+setInterval( ieladetChataZinasJson, 1000 )
+</script>
   
 {% endblock content %}

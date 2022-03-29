@@ -36,28 +36,32 @@ def help():
 def top():
     return render_template('/top.html', title="top")
 
-@app.route('/rezultati/<punktiTotal>/<rezultats>/<time>')
-def spelesRezultats(punktiTotal, rezultats, time):
-    with open('dati/speletajs.json', 'r', encoding="utf-8") as r:
-        speletajaVards = r.read()
-        rindas = json.loads(speletajaVards)
-     
-    rinda = {
-        "vārds": speletajaVards,
-        "kopejie punkti": punktiTotal,
-        "atminētie vārdi ": rezultats,
-        "atlikušais laiks": time
+@app.route('/sutitUzServeri/<vards>/<punkti>/<time>/<rez>/<kludas>')
+def rezutalti(vards, punkti, time, rez, kludas):
+    rinda={
+        'spēlētāja vārds': vards,
+        'koēpjie punkti': punkti,
+        'atlikušais laiks': time,
+        'vārdu skaits': rez,
+        'kļūdu skaits':kludas
     }
-   
     with open('dati/rezultati.json', 'r', encoding="utf-8") as r:
-        vecie = r.read()
-        rindas = json.loads(vecie)
-  
-        rindas.append(rinda)
+         vecie = r.read()
+         rindas = json.loads(vecie)
+         rindas.append(rinda)
+         
     with open('dati/rezultati.json', 'w', encoding="utf-8") as f:
         f.write(json.dumps(rindas, indent=2, ensure_ascii=False))
-    
     return "OK"
+
+
+
+@app.route('/lasit')
+def lasit():
+  with open('dati/rezultati.json', 'r', encoding="utf-8") as f:
+    rezultati = f.read()
+  
+  return rezultati
        
 if __name__ == "__main__":
     app.run(debug = True)
