@@ -4,16 +4,17 @@ from flask import Flask, jsonify, render_template, request
 import json
 
 app = Flask(__name__)
-
+global user
 user=''
 
 @app.route("/",  methods=["GET", "POST"])
 def login():
-    return render_template('/login.html', title="login")
+    global user
+    user=''
+    return render_template('/login.html', title="login", vards=user)
 
 @app.route("/layout",  methods=["POST"])
 def layout():
-    
     vards = request.form.get('vards')
     vards=(f"{vards}")
     global user
