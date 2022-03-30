@@ -5,6 +5,7 @@ import json
 
 app = Flask(__name__)
 
+user=''
 
 @app.route("/",  methods=["GET", "POST"])
 def login():
@@ -12,6 +13,7 @@ def login():
 
 @app.route("/layout",  methods=["POST"])
 def layout():
+    
     vards = request.form.get('vards')
     vards=(f"{vards}")
     global user
@@ -23,8 +25,8 @@ def layout():
 
 @app.route("/sakums",  methods=["GET", "POST"])
 def sakums():
-    if user is not defined:
-        return render_template('/sakums.html', title="sākums")
+    if(user == ''):
+        return render_template('/login.html', title="sākums")
     else:
 
     # with open('dati/speletajs.json', 'r', encoding="utf-8") as r:
