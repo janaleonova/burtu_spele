@@ -4,8 +4,7 @@ from flask import Flask, jsonify, render_template, request
 import json
 
 app = Flask(__name__)
-rindas = [] 
-global vards
+
 
 @app.route("/",  methods=["GET", "POST"])
 def login():
@@ -15,18 +14,23 @@ def login():
 def layout():
     vards = request.form.get('vards')
     vards=(f"{vards}")
-    
-    with open('dati/speletajs.json', 'w', encoding="utf-8") as f:
-        f.write(json.dumps(vards, indent=2, ensure_ascii=False))
+    global user
+    user = vards
+    # with open('dati/speletajs.json', 'w', encoding="utf-8") as f:
+    #     f.write(json.dumps(vards, indent=2, ensure_ascii=False))
     return render_template('/layout.html', title="layout", vards=vards)
 
 
 @app.route("/sakums",  methods=["GET", "POST"])
 def sakums():
-    with open('dati/speletajs.json', 'r', encoding="utf-8") as r:
-        speletajaVards = r.read()
-        vards = json.loads(speletajaVards)
-    return render_template('/sakums.html', title="sākums", vards=vards)
+    if user is not defined:
+        return render_template('/sakums.html', title="sākums")
+    else:
+
+    # with open('dati/speletajs.json', 'r', encoding="utf-8") as r:
+    #     speletajaVards = r.read()
+    #     vards = json.loads(speletajaVards)
+        return render_template('/sakums.html', title="sākums", vards=user)
 
 @app.route("/help",  methods=["GET", "POST"])
 def help():
@@ -40,7 +44,7 @@ def top():
 def rezutalti(vards, punkti, time, rez, kludas):
     rinda={
         'spēlētāja vārds': vards,
-        'koēpjie punkti': punkti,
+        'kopējie punkti': punkti,
         'atlikušais laiks': time,
         'vārdu skaits': rez,
         'kļūdu skaits':kludas
