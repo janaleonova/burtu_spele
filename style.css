@@ -8,7 +8,7 @@
     background: linear-gradient(to bottom, rgb(107, 217, 245) , rgb(246, 246, 248) , rgb(179, 246, 124) ) no-repeat;
     }
   :root {
-    font-size: 15px;
+    font-size: 14px;
       }
   
   /* Header/Blog Title */
@@ -18,33 +18,30 @@
     background: white;
   }
   
-  .header h1 {
-    font-size: 50px;
+  h1 {
+    font-size: 7rem;
   }
-  
-  /* Style the top navigation bar */
-  .topnav {
-    overflow: hidden;
-    background-color: #333;
+
+  h2 {
+    font-size: 3rem;
   }
-  
-  /* Style the topnav links */
-  .topnav a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  /* Change color on hover */
-  .topnav a:hover {
-    background-color: #ddd;
+  .h_outline{
     color: black;
+    -webkit-text-fill-color: rgb(228, 225, 225); /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(32, 29, 29);
   }
+  
+  .nav-link {
+    font-size: 1.5rem;
+    text-transform:uppercase;
+  }
+
+
   .img_bite_sm{
-   height: 5rem;
+   height: 3rem;
+   vertical-align: sub;
+
   }
   /* Create two unequal columns that floats next to each other */
   /* Left column */
@@ -90,21 +87,13 @@
   
   /* Add a card effect for articles */
   .card {
-    background-color: white;
-    padding: 20px;
-    margin-top: 20px;
+    
+    height: 27rem;
   }
  .leftcolumn .card{
-   
-    width: 45rem;
-    margin:auto;
-    border-radius: 2rem;
-    height: 25rem;
-     
+    height: 440px;
  }
-  .row{
-    background: linear-gradient(to bottom, rgb(107, 217, 245) , rgb(246, 246, 248) , rgb(179, 246, 124) ) no-repeat;
-  }
+ 
   /* Clear floats after the columns */
   .row:after {
     content: "";
@@ -113,6 +102,9 @@
     
   }
   
+  .tekstaLaukiKartites{
+    padding: 1.5rem;
+  }
   /* Footer */
   .footer {
     padding: 20px;
