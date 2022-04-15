@@ -1,1 +1,0 @@
-# burtu_spele
